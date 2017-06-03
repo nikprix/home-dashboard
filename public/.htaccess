@@ -1,7 +1,7 @@
 Options -MultiViews
 RewriteEngine On
 
-#RewriteBase /PHP-shopping-carts-mvc/home_dashboard/public
+#RewriteBase /PHP-shopping-carts-mvc/home-dashboard/public
 RewriteBase /home-dashboard/public
 
 RewriteCond %{REQUEST_FILENAME} !-d

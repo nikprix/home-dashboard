@@ -1,6 +1,6 @@
 <?php
 
-require_once $_SERVER['DOCUMENT_ROOT'].'/home_dashboard/app/init.php';
+require_once $_SERVER['DOCUMENT_ROOT'].'/home-dashboard/app/Init.php';
 
 $app = new App;
 
