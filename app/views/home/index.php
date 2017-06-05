@@ -17,7 +17,10 @@
 
 <h1 align="center">Weather</h1>
 
+<div id="main">
+    <div id="clock"></div>
 
+</div>
 
 
 
