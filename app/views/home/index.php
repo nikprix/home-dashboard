@@ -14,9 +14,6 @@
     <link href="../public/css/style.css" rel="stylesheet" type="text/css">
 </head>
 <body>
-
-<h1 align="center">Weather</h1>
-
 <div id="main">
     <div id="clock"></div>
 
