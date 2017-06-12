@@ -30,7 +30,7 @@ div#main {
 /* clock */
 
 div#clock {
-    right: 0px;
+    right: 20px;
     top: 0px;
     position: absolute;
     overflow: hidden;
@@ -58,7 +58,7 @@ span.clock_grey {
 /* meteo */
 
 div#meteo {
-    right: 650px;
+    right: 660px;
     top: 20px;
     position: absolute;
     overflow: hidden;
@@ -76,4 +76,70 @@ div#meteo_black {
     position: absolute;
     z-index: 9999;
     background-color: rgba(0, 0, 0, 1);
+}
+
+div.dayForecast{
+    float: left;
+    margin: 10px 20px;
+}
+
+div.weekDay {
+    display: inline-block;
+    font-size: 22px;
+    font-weight: 700;
+    text-transform: uppercase;
+    text-align: center;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+span.monthDay {
+    display: block;
+    font-size: 15px;
+    color: #c0c0c0;
+    font-weight: 700;
+    text-transform: none;
+}
+
+p.conditions{
+    font-size: 17px;
+    color: #c0c0c0;
+}
+
+div.temperature{
+    display: inline-block;
+}
+
+span.maxTemp{
+    color: #EB1924;
+    font-size: 18px;
+    font-weight: 700;
+}
+
+span.lowTemp{
+    color: #0076BA;
+    font-size: 18px;
+    font-weight: 700;
+}
+
+div.hourlyForecast{
+    float: left;
+}
+
+div.timeDisplay{
+    display: inline;
+    margin-right: 50px;
+}
+
+span.hours{
+    color: #EB1924;
+    font-size: 18px;
+    font-weight: 700;
+}
+
+span.minutes{
+    color: #0076BA;
+    font-size: 18px;
+    font-weight: 700;
 }
