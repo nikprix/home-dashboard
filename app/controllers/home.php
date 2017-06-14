@@ -56,7 +56,7 @@ class Home extends Controller
             $newIconUrl = str_replace('/' . $replace . '/', '/' . $newIconType . '/', $iconUrl);
 
             // replacing current day string with 'TODAY'
-            ($weekDay == date('l') && $date == getdate(date("U"))[mday]) ? $weekDay = 'today': $weekDay;
+            ($weekDay == date('l') && $date == getdate(date("U"))[mday]) ? $weekDay = 'today' : $weekDay;
 
             $htmlDailyWeather .=
                 '<div class="dayForecast">
@@ -75,7 +75,7 @@ class Home extends Controller
 
         $htmlDailyWeather =
             '<div id="dailyBlock">
-                '. $htmlDailyWeather .'
+                ' . $htmlDailyWeather . '
             </div>';
 
 
@@ -90,24 +90,32 @@ class Home extends Controller
 
             $hour = $hoursForecast[$i]['FCTTIME']['hour'];
             $minute = $hoursForecast[$i]['FCTTIME']['min'];
+            $hourlyTemp = $hoursForecast[$i]['temp']['metric'];
+            $feelsLikeTemp = $hoursForecast[$i]['feelslike']['metric'];
+            $hourlyIcon = $hoursForecast[$i]['icon_url'];
+            $hourlyCondition = $hoursForecast[$i]['condition'];
 
             $htmlHourlyWeather .=
                 '<div class="hourlyForecast">
                     <div class="timeDisplay">
-                        <span class="hours">' . $hour . ' :</span>
-                        <span class="minutes">' . $minute . '</span>
-                    </div>
+                        <span class="hoursMinutes">' . $hour . ':' . $minute. '</span>
 
+                    </div>
+                    <p class="conditions">' . $hourlyCondition . '</p>
+                    <p><img class="hourlyWeatherIcon" src="' . $hourlyIcon . '"></p>
+                    <div class="hourlyTemperature">
+                        <span class="currentTemp">' . $hourlyTemp . '&deg;</span>
+                    </div>
                 </div>';
 
 
             // breaking the loop when 10 hours weather is retrieved
-            if($i == 9) break;
+            if ($i == 11) break;
         }
 
         $htmlHourlyWeather =
             '<div id="hourlyBlock">
-                '. $htmlHourlyWeather .'
+                ' . $htmlHourlyWeather . '
             </div>';
 
         $htmlDailyWeather .= $htmlHourlyWeather;

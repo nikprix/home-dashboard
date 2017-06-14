@@ -78,7 +78,11 @@ div#meteo_black {
     background-color: rgba(0, 0, 0, 1);
 }
 
-div.dayForecast{
+#meteo #dailyBlock {
+
+}
+
+div.dayForecast {
     float: left;
     margin: 10px 20px;
 }
@@ -102,44 +106,62 @@ span.monthDay {
     text-transform: none;
 }
 
-p.conditions{
+p.conditions {
     font-size: 17px;
     color: #c0c0c0;
 }
 
-div.temperature{
+div.temperature {
     display: inline-block;
 }
 
-span.maxTemp{
+span.maxTemp {
     color: #EB1924;
-    font-size: 18px;
+    font-size: 22px;
     font-weight: 700;
 }
 
-span.lowTemp{
+span.lowTemp {
     color: #0076BA;
-    font-size: 18px;
+    font-size: 22px;
     font-weight: 700;
 }
 
-div.hourlyForecast{
+/*Hourly*/
+
+#meteo #hourlyBlock {
+}
+
+div.hourlyForecast {
+    margin-top: 30px;
     float: left;
 }
 
-div.timeDisplay{
+div.timeDisplay {
     display: inline;
     margin-right: 50px;
 }
 
-span.hours{
-    color: #EB1924;
+span.hoursMinutes {
+    color: #00ABEB;
     font-size: 18px;
     font-weight: 700;
 }
 
-span.minutes{
-    color: #0076BA;
-    font-size: 18px;
+div.hourlyTemperature {
+}
+
+span.currentTemp {
+    font-size: 22px;
     font-weight: 700;
+    display: block;
+}
+
+span.feelsLikeTemp {
+    display: block;
+}
+
+img.hourlyWeatherIcon{
+    width: 37%;
+    height: auto;
 }
