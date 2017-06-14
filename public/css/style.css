@@ -83,6 +83,7 @@ div#meteo_black {
 }
 
 div.dayForecast {
+    width: 130px;
     float: left;
     margin: 10px 20px;
 }
@@ -100,6 +101,7 @@ div.weekDay {
 
 span.monthDay {
     display: block;
+    text-align: center;
     font-size: 15px;
     color: #c0c0c0;
     font-weight: 700;
@@ -107,11 +109,17 @@ span.monthDay {
 }
 
 p.conditions {
+    text-align: center;
     font-size: 17px;
     color: #c0c0c0;
+    max-width: 130px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
 }
 
 div.temperature {
+    text-align: center;
     display: inline-block;
 }
 
@@ -133,35 +141,55 @@ span.lowTemp {
 }
 
 div.hourlyForecast {
+    width: 110px;
+    text-align: center;
     margin-top: 30px;
+    margin-right: 20px;
     float: left;
 }
 
 div.timeDisplay {
+    text-align: center;
     display: inline;
-    margin-right: 50px;
 }
 
 span.hoursMinutes {
+    text-align: center;
     color: #00ABEB;
     font-size: 18px;
     font-weight: 700;
 }
 
-div.hourlyTemperature {
+p.hourlyConditions {
+    text-align: center;
+    font-size: 15px;
+    color: #c0c0c0;
+    max-width: 110px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+div.hourlyTemperature{
 }
 
 span.currentTemp {
+    text-align: center;
     font-size: 22px;
     font-weight: 700;
-    display: block;
+    display: inline;
 }
 
-span.feelsLikeTemp {
-    display: block;
+span.celsDegree {
+    text-align: center;
+    font-size: 22px;
+    font-weight: 500;
+    display: inline;
+    margin-left: -3px;
 }
 
 img.hourlyWeatherIcon{
-    width: 37%;
-    height: auto;
+    max-height: 37px;
+    max-width: 37px;
+    object-fit: cover;
 }

@@ -1,6 +1,7 @@
 $(function () {
     clock();
     meteo();
+    buildLineGraph();
 });
 
 /* clock */
@@ -67,4 +68,64 @@ function meteo ()
     });
 
     meteo_timeout = setTimeout("meteo()", 3600000);
+}
+
+
+// builds simple graph using chartjs.org lib
+function buildLineGraph()
+{
+    var ctx = document.getElementById("myChart");
+
+    // creating an empty array to store hours in it
+    var allHours = [];
+    // retrieving all times from the page:
+    $("span.hoursMinutes").each(function() {
+        // append values to an array
+        allHours.push($(this).text());
+    });
+
+    // creating an empty array to store temperatures in it
+    var allHourlyTemps = [];
+    // retrieving all times from the page:
+    $("span.currentTemp").each(function() {
+        // append values to an array
+        allHourlyTemps.push($(this).text());
+    });
+
+    var myChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: allHours,
+            datasets: [{
+                label: 'Hourly temperatures',
+                data: allHourlyTemps,
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(255, 206, 86, 0.2)',
+                    'rgba(75, 192, 192, 0.2)',
+                    'rgba(153, 102, 255, 0.2)',
+                    'rgba(255, 159, 64, 0.2)'
+                ],
+                borderColor: [
+                    'rgba(255,99,132,1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)'
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero:true
+                    }
+                }]
+            }
+        }
+    });
 }

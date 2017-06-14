@@ -101,20 +101,21 @@ class Home extends Controller
                         <span class="hoursMinutes">' . $hour . ':' . $minute. '</span>
 
                     </div>
-                    <p class="conditions">' . $hourlyCondition . '</p>
+                    <p class="hourlyConditions">' . $hourlyCondition . '</p>
                     <p><img class="hourlyWeatherIcon" src="' . $hourlyIcon . '"></p>
                     <div class="hourlyTemperature">
-                        <span class="currentTemp">' . $hourlyTemp . '&deg;</span>
+                        <span class="currentTemp">' . $hourlyTemp . '</span>
+                        <span class="celsDegree">&deg;</span>
                     </div>
                 </div>';
 
-
             // breaking the loop when 10 hours weather is retrieved
-            if ($i == 11) break;
+            if ($i == 10) break;
         }
 
         $htmlHourlyWeather =
             '<div id="hourlyBlock">
+                <canvas id="myChart" width="1200" height="120"></canvas>
                 ' . $htmlHourlyWeather . '
             </div>';
 
