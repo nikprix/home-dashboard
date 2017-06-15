@@ -143,7 +143,7 @@ span.lowTemp {
 div.hourlyForecast {
     width: 110px;
     text-align: center;
-    margin-top: 30px;
+    margin-top: 20px;
     margin-right: 20px;
     float: left;
 }
@@ -192,4 +192,8 @@ img.hourlyWeatherIcon{
     max-height: 37px;
     max-width: 37px;
     object-fit: cover;
+}
+
+#hourlyWeatherChart{
+    width: 1375px !important;
 }

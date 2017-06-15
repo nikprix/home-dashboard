@@ -2,6 +2,9 @@ $(function () {
     clock();
     meteo();
     buildLineGraph();
+
+    // leave it at the end
+    fixWeatherConditionsLength();
 });
 
 /* clock */
@@ -70,11 +73,10 @@ function meteo ()
     meteo_timeout = setTimeout("meteo()", 3600000);
 }
 
-
-// builds simple graph using chartjs.org lib
+/* builds simple graph using chartjs.org lib */
 function buildLineGraph()
 {
-    var ctx = document.getElementById("myChart");
+    var ctx = document.getElementById("hourlyWeatherChart");
 
     // creating an empty array to store hours in it
     var allHours = [];
@@ -126,6 +128,43 @@ function buildLineGraph()
                     }
                 }]
             }
+        }
+    });
+}
+
+
+/* reduces font size*/
+function fixWeatherConditionsLength(){
+    // looping through each div with class 'conditions'
+    $('p.conditions').each(function() {
+        // if length of the string is more than 14 chars, it will get hidden, so need to apply fix below
+        if($(this).text().length > 14)
+        {
+            // getting current div height
+            var conditionsHeight = $(this).height();
+            // calculating new height
+            var newCondHeight = conditionsHeight * 2 + 3;
+            $('p.conditions').height(newCondHeight);
+            $('p.conditions').css({'white-space': 'pre-wrap'});
+            // need to break the loop since it's enough to apply css only once
+            return false;
+        }
+    });
+
+    // looping through each div with class 'hourlyConditions'
+    $('p.hourlyConditions').each(function() {
+        // if length of the string is more than 13 chars, it will get hidden, so need to apply fix below
+        if($(this).text().length > 13)
+        {
+            // getting current div height
+            var hourlyConditionsHeight = $(this).height();
+            // calculating new height
+            var newHourlyCondHeight = hourlyConditionsHeight * 2 + 3;
+            console.log(newHourlyCondHeight);
+            $('p.hourlyConditions').height(newHourlyCondHeight);
+            $('p.hourlyConditions').css({'white-space': 'pre-wrap'});
+            // need to break the loop since it's enough to apply css only once
+            return false;
         }
     });
 }

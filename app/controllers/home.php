@@ -115,7 +115,7 @@ class Home extends Controller
 
         $htmlHourlyWeather =
             '<div id="hourlyBlock">
-                <canvas id="myChart" width="1200" height="120"></canvas>
+                <canvas id="hourlyWeatherChart" width="1300" height="120"></canvas>
                 ' . $htmlHourlyWeather . '
             </div>';
 
