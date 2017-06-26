@@ -41,12 +41,12 @@ div#clock {
 }
 
 div.clock_hour {
-    font-size: 180px;
+    font-size: 150px;
     background-color: rgba(0, 0, 0, 1);
 }
 
 div.clock_date {
-    font-size: 50px;
+    font-size: 40px;
     background-color: rgba(0, 0, 0, 1);
 }
 
@@ -58,7 +58,7 @@ span.clock_grey {
 /* meteo */
 
 div#meteo {
-    right: 660px;
+    right: 500px;
     top: 20px;
     position: absolute;
     overflow: hidden;
