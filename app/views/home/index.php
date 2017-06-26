@@ -8,7 +8,7 @@
     <meta http-equiv="Cache-Control" content="no-cache">
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
-    <meta http-equiv="refresh" content="6000;url=index.php">
+<!--    <meta http-equiv="refresh" content="6000;url=index.php">-->
     <script type="text/javascript" src="../public/js/lib/jquery.js"></script>
     <script type="text/javascript" src="../public/js/lib/moment-with-locales.js"></script>
     <script type="text/javascript" src="../public/js/lib/jquery.gridalicious.min.js"></script>
