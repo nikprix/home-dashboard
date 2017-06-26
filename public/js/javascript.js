@@ -1,16 +1,10 @@
 $(function () {
     clock();
     meteo();
-    buildLineGraph();
 
     if (typeof TWEETS != 'undefined') {
         TWEETS.loadTweets();
     }
-
-
-    // leave it at the end
-    fixWeatherConditionsLength();
-    colorSTMUsers();
 });
 
 /** retrieves clock **/
@@ -72,6 +66,10 @@ function meteo() {
         data: "block=meteo",
         success: function (html) {
             $("#meteo").html(html);
+            // fixing Weather conditions
+            fixWeatherConditionsLength();
+            // building graph using received hourly temperatures
+            buildLineGraph();
         }
     });
 
@@ -188,23 +186,23 @@ TWEETS = {
                             // exiting loop in case if received amount of tweets is less than wanted to display
                             if (i == Object.keys(data.statuses).length) break;
 
-                                img = '';
-                                url =
-                                    'http://twitter.com/' + data.statuses[i].user.screen_name + '/status/' + data.statuses[i].id_str;
-                                //try {
-                                //    if (data[i].entities['media']) {
-                                //        img =
-                                //            '<a href="' + url + '" target="_blank"><img src="' +
-                                // data.statuses[i].entities['media'][0].media_url + '" /></a>'; } } catch (e) {
-                                // alert('no media'); }
+                            img = '';
+                            url =
+                                'http://twitter.com/' + data.statuses[i].user.screen_name + '/status/' + data.statuses[i].id_str;
+                            //try {
+                            //    if (data[i].entities['media']) {
+                            //        img =
+                            //            '<a href="' + url + '" target="_blank"><img src="' +
+                            // data.statuses[i].entities['media'][0].media_url + '" /></a>'; } } catch (e) {
+                            // alert('no media'); }
 
-                                $(TWEETS.appendTo)
-                                    .append(TWEETS.template.replace('{TEXT}', TWEETS.ify.clean(data.statuses[i].text))
-                                        .replace('{USER}', data.statuses[i].user.screen_name)
-                                        .replace('{IMG}', img)
-                                        .replace('{AGO}', TWEETS.timeAgo(data.statuses[i].created_at))
-                                        .replace('{URL}', url)
-                                    );
+                            $(TWEETS.appendTo)
+                                .append(TWEETS.template.replace('{TEXT}', TWEETS.ify.clean(data.statuses[i].text))
+                                    .replace('{USER}', data.statuses[i].user.screen_name)
+                                    .replace('{IMG}', img)
+                                    .replace('{AGO}', TWEETS.timeAgo(data.statuses[i].created_at))
+                                    .replace('{URL}', url)
+                                );
                         }
 
                     } catch (e) {
@@ -219,6 +217,9 @@ TWEETS = {
                             animate: true
                         });
                     }
+
+                    // before exiting from this function - coloring tweets:
+                    colorSTMUsers();
 
                 } else alert('no data returned');
 
@@ -369,14 +370,14 @@ function getTodayDate() {
     return moment().format('YYYY-MM-DD');
 }
 
-function colorSTMUsers(){
+function colorSTMUsers() {
     // looping through each div with class '.user'
     $('#twitter .user').each(function () {
         if ($(this).text() === 'stm_Verte') {
             $(this).css({'color': 'green'});
-        } else if($(this).text() === 'stm_Orange') {
+        } else if ($(this).text() === 'stm_Orange') {
             $(this).css({'color': 'orange'});
-        } else if($(this).text() === 'stm_Jaune') {
+        } else if ($(this).text() === 'stm_Jaune') {
             $(this).css({'color': 'yellow'});
         }
     });
@@ -384,16 +385,13 @@ function colorSTMUsers(){
 }
 
 /////////////// setting timeouts ///////////////
-window.setInterval(function(){
+window.setInterval(function () {
     TWEETS.loadTweets();
-    colorSTMUsers();
-}, 1000*60);
+}, 1000 * 60);
 
-window.setInterval(function(){
+window.setInterval(function () {
     meteo();
-    buildLineGraph();
-    fixWeatherConditionsLength();
-}, 1000*60*15);
+}, 1000 * 60 * 10);
 
 
 
