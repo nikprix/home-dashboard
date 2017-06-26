@@ -1,4 +1,6 @@
 <?php
+// Setting default timezone
+date_default_timezone_set('America/New_York');
 
 require_once $_SERVER['DOCUMENT_ROOT'] . '/home-dashboard/app/core/Controller.php';
 
@@ -55,7 +57,7 @@ class Home extends Controller
             $replace = 'k';
             $newIconUrl = str_replace('/' . $replace . '/', '/' . $newIconType . '/', $iconUrl);
 
-            // replacing current day string with 'TODAY'
+            // replacing current day string with 'TODAY'. Also, here we are using default timezone
             ($weekDay == date('l') && $date == getdate(date("U"))[mday]) ? $weekDay = 'today' : $weekDay;
 
             $htmlDailyWeather .=
@@ -122,7 +124,20 @@ class Home extends Controller
         $htmlDailyWeather .= $htmlHourlyWeather;
 
         return $htmlDailyWeather;
+    }
 
+    /////////////////////////////////////////////////
+    //  Twitter
+    /////////////////////////////////////////////////
+
+    public function twitter($getQueryString)
+    {
+        $model = $this->model('Model');
+
+        // retrieving tweets JSON (as is, filtering and parsing is done on the client level)
+        $tweets = $model->getTweets($getQueryString);
+
+        return $tweets;
     }
 
 }

@@ -3,15 +3,22 @@ $(function () {
     meteo();
     buildLineGraph();
 
+    if (typeof TWEETS != 'undefined') {
+        TWEETS.loadTweets();
+    }
+
+
     // leave it at the end
     fixWeatherConditionsLength();
+    colorSTMUsers();
 });
 
-/* clock */
+/** retrieves clock **/
 
 var clock_timeout;
 
 function clock() {
+
     days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
     months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sept", "Oct", "Nov", "Dec"];
 
@@ -53,19 +60,17 @@ function clock() {
     clock_timeout = setTimeout("clock()", 1000);
 }
 
-
-/* meteo */
+/** retrieves weather info **/
 
 var meteo_timeout;
 
-function meteo ()
-{
+function meteo() {
     $.ajax({
-        async : false,
+        async: false,
         type: "GET",
         url: "../app/core/ajax.php",
         data: "block=meteo",
-        success: function(html){
+        success: function (html) {
             $("#meteo").html(html);
         }
     });
@@ -73,15 +78,14 @@ function meteo ()
     meteo_timeout = setTimeout("meteo()", 3600000);
 }
 
-/* builds simple graph using chartjs.org lib */
-function buildLineGraph()
-{
+/** builds simple graph using chartjs.org lib **/
+function buildLineGraph() {
     var ctx = document.getElementById("hourlyWeatherChart");
 
     // creating an empty array to store hours in it
     var allHours = [];
     // retrieving all times from the page:
-    $("span.hoursMinutes").each(function() {
+    $("span.hoursMinutes").each(function () {
         // append values to an array
         allHours.push($(this).text());
     });
@@ -89,7 +93,7 @@ function buildLineGraph()
     // creating an empty array to store temperatures in it
     var allHourlyTemps = [];
     // retrieving all times from the page:
-    $("span.currentTemp").each(function() {
+    $("span.currentTemp").each(function () {
         // append values to an array
         allHourlyTemps.push($(this).text());
     });
@@ -124,7 +128,7 @@ function buildLineGraph()
             scales: {
                 yAxes: [{
                     ticks: {
-                        beginAtZero:true
+                        beginAtZero: true
                     }
                 }]
             }
@@ -132,14 +136,207 @@ function buildLineGraph()
     });
 }
 
+/** retrieves recent tweets **/
 
-/* reduces font size*/
-function fixWeatherConditionsLength(){
+TWEETS = {
+    // Setting: //
+    // amount of tweets to display
+    numTweets: 10,
+    // where in DOM to append created HTML with all tweets
+    appendTo: '#twitter',
+    // make tweets looking awesome
+    useGridalicious: false,
+    // simple HTML block
+    template: '<div class="item">{IMG}\
+                    <div class="tweet-wrapper">\
+                    <span class="text">{TEXT}</span>\
+                    <span class="time">\
+                        <a href="{URL}" target="_blank">{AGO}</a>\
+                    </span>\
+                    by <span class="user">{USER}</span>\
+                    </div>\
+                    </div>',
+
+    // this function loads retrieves tweets from the backend
+    // https://dev.twitter.com/docs/using-search
+    loadTweets: function () {
+        //console.log('tweet refreshed!');
+        var request;
+
+        request = {
+            q: "q=from:stm_Verte+OR+from:stm_Orange+OR+from:stm_Jaune+since:" + getTodayDate() + "+%23stminfo",
+            block: "twitter"
+        }
+
+        $.ajax({
+            async: false,
+            url: '../app/core/ajax.php',
+            type: 'POST',
+            dataType: 'json',
+            data: request,
+            success: function (data, textStatus, xhr) {
+                //console.log('Retrieved Tweets:');
+                //console.log(data);
+                if (xhr.status == 200) {
+
+                    var text, name, img;
+
+                    try {
+                        // append tweets into page
+                        for (var i = 0; i < TWEETS.numTweets; i++) {
+
+                            // exiting loop in case if received amount of tweets is less than wanted to display
+                            if (i == Object.keys(data.statuses).length) break;
+
+                                img = '';
+                                url =
+                                    'http://twitter.com/' + data.statuses[i].user.screen_name + '/status/' + data.statuses[i].id_str;
+                                //try {
+                                //    if (data[i].entities['media']) {
+                                //        img =
+                                //            '<a href="' + url + '" target="_blank"><img src="' +
+                                // data.statuses[i].entities['media'][0].media_url + '" /></a>'; } } catch (e) {
+                                // alert('no media'); }
+
+                                $(TWEETS.appendTo)
+                                    .append(TWEETS.template.replace('{TEXT}', TWEETS.ify.clean(data.statuses[i].text))
+                                        .replace('{USER}', data.statuses[i].user.screen_name)
+                                        .replace('{IMG}', img)
+                                        .replace('{AGO}', TWEETS.timeAgo(data.statuses[i].created_at))
+                                        .replace('{URL}', url)
+                                    );
+                        }
+
+                    } catch (e) {
+                        alert('item is less than item count');
+                    }
+
+                    if (TWEETS.useGridalicious) {
+                        //run grid-a-licious
+                        $(TWEETS.appendTo).gridalicious({
+                            gutter: 13,
+                            width: 200,
+                            animate: true
+                        });
+                    }
+
+                } else alert('no data returned');
+
+            }
+
+        });
+
+    },
+
+    /**
+     * relative time calculator FROM TWITTER
+     * @param {string} twitter date string returned from Twitter API
+     * @return {string} relative time like "2 minutes ago"
+     */
+    timeAgo: function (dateString) {
+        var rightNow = new Date();
+        var then = new Date(dateString);
+
+        var diff = rightNow - then;
+
+        var second = 1000,
+            minute = second * 60,
+            hour = minute * 60,
+            day = hour * 24,
+            week = day * 7;
+
+        if (isNaN(diff) || diff < 0) {
+            return ""; // return blank string if unknown
+        }
+
+        if (diff < second * 2) {
+            // within 2 seconds
+            return "right now";
+        }
+
+        if (diff < minute) {
+            return Math.floor(diff / second) + " seconds ago";
+        }
+
+        if (diff < minute * 2) {
+            return "about 1 minute ago";
+        }
+
+        if (diff < hour) {
+            return Math.floor(diff / minute) + " minutes ago";
+        }
+
+        if (diff < hour * 2) {
+            return "about 1 hour ago";
+        }
+
+        if (diff < day) {
+            return Math.floor(diff / hour) + " hours ago";
+        }
+
+        if (diff > day && diff < day * 2) {
+            return "yesterday";
+        }
+
+        if (diff < day * 365) {
+            return Math.floor(diff / day) + " days ago";
+        }
+
+        else {
+            return "over a year ago";
+        }
+    }, // timeAgo()
+
+    /**
+     * The Twitalinkahashifyer!
+     * http://www.dustindiaz.com/basement/ify.html
+     * Eg:
+     * ify.clean('your tweet text');
+     */
+    ify: {
+        link: function (tweet) {
+            return tweet.replace(/\b(((https*\:\/\/)|www\.)[^\"\']+?)(([!?,.\)]+)?(\s|$))/g,
+                function (link, m1, m2, m3, m4) {
+                    var http = m2.match(/w/) ? 'http://' : '';
+                    return '<a class="twtr-hyperlink" target="_blank" href="' + http + m1 + '">' + ((m1.length > 25) ? m1.substr(
+                            0, 24) + '...' : m1) + '</a>' + m4;
+                });
+        },
+
+        at: function (tweet) {
+            return tweet.replace(/\B[@＠]([a-zA-Z0-9_]{1,20})/g, function (m, username) {
+                return '<a target="_blank" class="twtr-atreply" href="http://twitter.com/intent/user?screen_name=' + username + '">@' + username + '</a>';
+            });
+        },
+
+        list: function (tweet) {
+            return tweet.replace(/\B[@＠]([a-zA-Z0-9_]{1,20}\/\w+)/g, function (m, userlist) {
+                return '<a target="_blank" class="twtr-atreply" href="http://twitter.com/' + userlist + '">@' + userlist + '</a>';
+            });
+        },
+
+        hash: function (tweet) {
+            return tweet.replace(/(^|\s+)#(\w+)/gi, function (m, before, hash) {
+                return before + '<a target="_blank" class="twtr-hashtag" href="http://twitter.com/search?q=%23' + hash + '">#' + hash + '</a>';
+            });
+        },
+
+        clean: function (tweet) {
+            return this.hash(this.at(this.list(this.link(tweet))));
+        }
+    } // ify
+
+};
+
+
+/** HELPER FUNCTIONS **/
+
+/** reduces font size **/
+function fixWeatherConditionsLength() {
     // looping through each div with class 'conditions'
-    $('p.conditions').each(function() {
+    $('p.conditions').each(function () {
         // if length of the string is more than 14 chars, it will get hidden, so need to apply fix below
-        if($(this).text().length > 14)
-        {
+        if ($(this).text().length > 14) {
             // getting current div height
             var conditionsHeight = $(this).height();
             // calculating new height
@@ -152,10 +349,9 @@ function fixWeatherConditionsLength(){
     });
 
     // looping through each div with class 'hourlyConditions'
-    $('p.hourlyConditions').each(function() {
+    $('p.hourlyConditions').each(function () {
         // if length of the string is more than 13 chars, it will get hidden, so need to apply fix below
-        if($(this).text().length > 13)
-        {
+        if ($(this).text().length > 13) {
             // getting current div height
             var hourlyConditionsHeight = $(this).height();
             // calculating new height
@@ -168,3 +364,47 @@ function fixWeatherConditionsLength(){
         }
     });
 }
+
+function getTodayDate() {
+    return moment().format('YYYY-MM-DD');
+}
+
+function colorSTMUsers(){
+    // looping through each div with class '.user'
+    $('#twitter .user').each(function () {
+        if ($(this).text() === 'stm_Verte') {
+            $(this).css({'color': 'green'});
+        } else if($(this).text() === 'stm_Orange') {
+            $(this).css({'color': 'orange'});
+        } else if($(this).text() === 'stm_Jaune') {
+            $(this).css({'color': 'yellow'});
+        }
+    });
+
+}
+
+/////////////// setting timeouts ///////////////
+window.setInterval(function(){
+    TWEETS.loadTweets();
+    colorSTMUsers();
+}, 1000*60);
+
+window.setInterval(function(){
+    meteo();
+    buildLineGraph();
+    fixWeatherConditionsLength();
+}, 1000*60*15);
+
+
+
+
+
+
+
+
+
+
+
+
+
+

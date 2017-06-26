@@ -6,8 +6,11 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/home-dashboard/app/controllers/home.p
 
 $homeContr = new Home;
 
+// proceeding only if client request asks to display specific block
 if (isset($_REQUEST['block'])) {
     $block = $_REQUEST['block'];
+} else if (isset($_POST['block'])){
+    $block = $_POST['block'];
 } else {
     $block = 'none';
 }
@@ -18,4 +21,17 @@ if (isset($_REQUEST['block'])) {
 
 if ($block == 'meteo') {
     echo $homeContr->meteo();
+}
+
+
+/////////////////////////////////////////////////
+//  TWITTER
+/////////////////////////////////////////////////
+
+if ($block == 'twitter') {
+
+    // retrieving search query
+    $tweetsGetQueryString = $_POST['q'];
+
+    echo $homeContr->twitter($tweetsGetQueryString);
 }
