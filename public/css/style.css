@@ -58,7 +58,7 @@ span.clock_grey {
 /* meteo */
 
 div#meteo {
-    right: 500px;
+    right: 450px;
     top: 20px;
     position: absolute;
     overflow: hidden;
