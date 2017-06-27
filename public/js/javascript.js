@@ -387,11 +387,11 @@ function colorSTMUsers() {
 /////////////// setting timeouts ///////////////
 window.setInterval(function () {
     TWEETS.loadTweets();
-}, 1000 * 60);
+}, 60000); // 1 minute
 
 window.setInterval(function () {
     meteo();
-}, 1000 * 60 * 10);
+}, 600000); // 10 minutes
 
 
 
