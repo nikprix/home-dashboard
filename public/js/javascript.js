@@ -56,7 +56,7 @@ function clock() {
 
 /** retrieves weather info **/
 
-var meteo_timeout;
+//var meteo_timeout;
 
 function meteo() {
     $.ajax({
@@ -72,8 +72,8 @@ function meteo() {
             buildLineGraph();
         }
     });
-
-    meteo_timeout = setTimeout("meteo()", 3600000);
+    console.log('weather refreshed!');
+   // meteo_timeout = setTimeout("meteo()", 3600000);
 }
 
 /** builds simple graph using chartjs.org lib **/
@@ -158,7 +158,7 @@ TWEETS = {
     // this function loads retrieves tweets from the backend
     // https://dev.twitter.com/docs/using-search
     loadTweets: function () {
-        //console.log('tweet refreshed!');
+
         var request;
 
         request = {
@@ -226,7 +226,7 @@ TWEETS = {
             }
 
         });
-
+        console.log('tweet refreshed!');
     },
 
     /**
