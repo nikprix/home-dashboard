@@ -357,7 +357,7 @@ function fixWeatherConditionsLength() {
             var hourlyConditionsHeight = $(this).height();
             // calculating new height
             var newHourlyCondHeight = hourlyConditionsHeight * 2 + 3;
-            console.log(newHourlyCondHeight);
+            //console.log(newHourlyCondHeight);
             $('p.hourlyConditions').height(newHourlyCondHeight);
             $('p.hourlyConditions').css({'white-space': 'pre-wrap'});
             // need to break the loop since it's enough to apply css only once
