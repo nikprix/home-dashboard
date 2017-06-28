@@ -44,7 +44,7 @@ function clock() {
     // displaying 0 for hours, minutes that less than 10, conditions are above
     clock_hour = hour + ":" + min0 + min;
     // displaying the date
-    clock_date = "<span class='clock_grey'>" + week_day + "</span> " + day + " " + month + " <span" +
+    clock_date = "<span class='clock_grey' id='weekDay'>" + week_day + "</span> " + day + " " + month + " <span" +
         " class='clock_grey'>" + year + "</span>";
     // displaying the time + date
     clock_content = "<div class='clock_hour'>" + clock_hour + "</div><div class='clock_date'>" + clock_date + "</div>";

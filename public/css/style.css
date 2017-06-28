@@ -55,6 +55,10 @@ span.clock_grey {
     font-size: inherit;
 }
 
+#weekDay{
+    font-size: 27px !important;
+}
+
 /* meteo */
 
 div#meteo {
