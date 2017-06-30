@@ -162,7 +162,8 @@ TWEETS = {
         var request;
 
         request = {
-            q: "q=from:stm_Verte+OR+from:stm_Orange+OR+from:stm_Jaune+since:" + getTodayDate() + "+%23stminfo",
+            //q: "q=from:DCV_Montreal+OR+from:stminfo+OR+from:stm_Verte+OR+from:stm_Orange+OR+from:stm_Jaune+%23stminfo+since:" + getTodayDate(),
+            q: "q=%23stminfo+-filter:retweets+since:" + getTodayDate(),
             block: "twitter"
         }
 
@@ -176,6 +177,9 @@ TWEETS = {
                 //console.log('Retrieved Tweets:');
                 //console.log(data);
                 if (xhr.status == 200) {
+
+                    // clearing previous entries
+                    $(TWEETS.appendTo).html('');
 
                     var text, name, img;
 
@@ -367,7 +371,9 @@ function fixWeatherConditionsLength() {
 }
 
 function getTodayDate() {
-    return moment().format('YYYY-MM-DD');
+    return '2017-06-28';
+    //console.log(moment().format('YYYY-MM-DD'));
+    //return moment().format('YYYY-MM-DD');
 }
 
 function colorSTMUsers() {
