@@ -371,9 +371,8 @@ function fixWeatherConditionsLength() {
 }
 
 function getTodayDate() {
-    return '2017-06-28';
     //console.log(moment().format('YYYY-MM-DD'));
-    //return moment().format('YYYY-MM-DD');
+    return moment().format('YYYY-MM-DD');
 }
 
 function colorSTMUsers() {
