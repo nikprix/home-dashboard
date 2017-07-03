@@ -20,11 +20,8 @@
 <div id="main">
     <div id="clock"></div>
     <div id="meteo"></div>
-    <div id="twitter">
-
-
-
-    </div>
+    <div id="twitter"></div>
+    <div id="photoFrame"></div>
 
 </div>
 

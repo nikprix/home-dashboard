@@ -15,8 +15,8 @@ class Model
     {
         $prop_array = parse_ini_file($_SERVER['DOCUMENT_ROOT'] . '/home-dashboard/app/config.ini.php');
 
-        $json_string = file_get_contents("http://api.wunderground.com/api/". $prop_array['weather_key']
-            ."/forecast10day/q/Canada/Montreal.json");
+        $json_string = file_get_contents("http://api.wunderground.com/api/" . $prop_array['weather_key']
+            . "/forecast10day/q/Canada/Montreal.json");
         $parsed_json = json_decode($json_string, true);
 
         return $parsed_json;
@@ -26,8 +26,8 @@ class Model
     {
         $prop_array = parse_ini_file($_SERVER['DOCUMENT_ROOT'] . '/home-dashboard/app/config.ini.php');
 
-        $json_string = file_get_contents("http://api.wunderground.com/api/". $prop_array['weather_key']
-            ."/hourly/q/Canada/Montreal.json");
+        $json_string = file_get_contents("http://api.wunderground.com/api/" . $prop_array['weather_key']
+            . "/hourly/q/Canada/Montreal.json");
         $parsed_json = json_decode($json_string, true);
 
         return $parsed_json;
@@ -58,9 +58,22 @@ class Model
 
         return $twitter->setGetfield($getField)
             ->buildOauth($url, $requestMethod)
-            ->performRequest();;
+            ->performRequest();
     }
 
+//////////////////////////    Photo Frame    //////////////////////////
+
+    public function getPhotoFromFolder()
+    {
+        $imagesDir = $_SERVER['DOCUMENT_ROOT'] . '/home-dashboard/public/usb/';
+
+        $images = glob($imagesDir . '*.{jpg,JPG,jpeg,JPEG,png,PNG}', GLOB_BRACE);
+
+        $randomImage = $images[array_rand($images)];
+
+        //returning only file name
+        return basename($randomImage);
+    }
 
 
 }

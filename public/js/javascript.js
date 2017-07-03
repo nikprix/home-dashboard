@@ -1,6 +1,7 @@
 $(function () {
     clock();
     meteo();
+    getPicture();
 
     if (typeof TWEETS != 'undefined') {
         TWEETS.loadTweets();
@@ -334,6 +335,23 @@ TWEETS = {
 };
 
 
+/** retrieves picture **/
+
+function getPicture() {
+    $.ajax({
+        async: false,
+        type: "GET",
+        url: "../app/core/ajax.php",
+        data: "block=photoFrame",
+        success: function (html) {
+            // clearing previous entries
+            $("#photoFrame").html('');
+            $("#photoFrame").html(html);
+        }
+    });
+}
+
+
 /** HELPER FUNCTIONS **/
 
 /** reduces font size **/
@@ -396,6 +414,10 @@ window.setInterval(function () {
 
 window.setInterval(function () {
     meteo();
+}, 600000); // 10 minutes
+
+window.setInterval(function () {
+    getPicture();
 }, 600000); // 10 minutes
 
 

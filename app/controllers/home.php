@@ -140,4 +140,23 @@ class Home extends Controller
         return $tweets;
     }
 
+    /////////////////////////////////////////////////
+    //  Photo frame
+    /////////////////////////////////////////////////
+
+    public function photoFrame(){
+
+        $model = $this->model('Model');
+
+        $photoPath = $model->getPhotoFromFolder();
+
+        $htmlPhotoFrame =
+            '<div>
+                <img src="/home-dashboard/public/usb/'. $photoPath .'">
+            </div>';
+
+        return $htmlPhotoFrame;
+    }
+
+
 }

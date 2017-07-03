@@ -23,7 +23,6 @@ if ($block == 'meteo') {
     echo $homeContr->meteo();
 }
 
-
 /////////////////////////////////////////////////
 //  TWITTER
 /////////////////////////////////////////////////
@@ -34,4 +33,12 @@ if ($block == 'twitter') {
     $tweetsGetQueryString = $_POST['q'];
 
     echo $homeContr->twitter($tweetsGetQueryString);
+}
+
+/////////////////////////////////////////////////
+//  PHOTO FRAME
+/////////////////////////////////////////////////
+
+if ($block == 'photoFrame') {
+    echo $homeContr->photoFrame();
 }

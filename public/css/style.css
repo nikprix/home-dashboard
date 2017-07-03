@@ -261,3 +261,17 @@ div#twitter {
     font-style: italic;
     color: #666666;
 }
+
+/** PHOTO FRAME **/
+
+div#photoFrame {
+    left: 20px;
+    top: 500px;
+    position: absolute;
+    overflow: hidden;
+}
+
+div#photoFrame img {
+    max-width:540px; /* you can use % */
+    height: auto;
+}
