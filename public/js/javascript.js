@@ -418,7 +418,7 @@ window.setInterval(function () {
 
 window.setInterval(function () {
     getPicture();
-}, 600000); // 10 minutes
+}, 300000); // 5 minutes
 
 
 
