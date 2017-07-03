@@ -272,6 +272,6 @@ div#photoFrame {
 }
 
 div#photoFrame img {
-    max-width:540px; /* you can use % */
+    max-width:600px; /* you can use % */
     height: auto;
 }
