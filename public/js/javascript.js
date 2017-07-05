@@ -347,6 +347,7 @@ function getPicture() {
             // clearing previous entries
             $("#photoFrame").html('');
             $("#photoFrame").html(html);
+            setImageSize();
         }
     });
 }
@@ -407,6 +408,18 @@ function colorSTMUsers() {
 
 }
 
+/** Fixes photo sizes for portrait and landscape images */
+function setImageSize(){
+    $('section img#familyPhoto').each(function(){
+        // checking image orientation
+        if ($(this).width()/$(this).height() >= 1) {
+            $(this).addClass('landscape');
+        } else {
+            $(this).addClass('portrait');
+        }
+    });
+}
+
 /////////////// setting timeouts ///////////////
 window.setInterval(function () {
     TWEETS.loadTweets();
@@ -419,6 +432,7 @@ window.setInterval(function () {
 window.setInterval(function () {
     getPicture();
 }, 300000); // 5 minutes
+
 
 
 

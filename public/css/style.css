@@ -55,7 +55,7 @@ span.clock_grey {
     font-size: inherit;
 }
 
-#weekDay{
+#weekDay {
     font-size: 27px !important;
 }
 
@@ -267,11 +267,55 @@ div#twitter {
 div#photoFrame {
     left: 20px;
     top: 500px;
+    padding-top: 20px;
+    width: 600px;
+    height: 500px;
     position: absolute;
+    overflow: hidden;
+    text-align: center;
+}
+
+section img#imagePin {
+    width: 30px;
+    height: auto;
+    position: relative;
+    top: -480px;
+    left: 255px;
+    z-index: 1;
+}
+
+section img#familyPhoto {
     overflow: hidden;
 }
 
-div#photoFrame img {
-    max-width:600px; /* you can use % */
+section img#familyPhoto.landscape {
+    max-width: 560px;
+    width: 100%;
     height: auto;
+}
+
+section img#familyPhoto.portrait {
+    max-height: 460px;
+    height: 100%;
+    width: auto;
+}
+
+/* Polaroid effects */
+section.polaroids img#familyPhoto {
+    background: #fff;
+    display: inline;
+    width: auto;
+    padding: 10px 10px 20px;
+}
+
+/* Tilt all landscape images -2 degrees */
+section.polaroids img#familyPhoto.landscape {
+    -webkit-transform: rotate(-2deg);
+    -moz-transform: rotate(-2deg);
+}
+
+/* Rotate all portrait images 2 degrees */
+section.polaroids img#familyPhoto.portrait {
+    -webkit-transform: rotate(2deg);
+    -moz-transform: rotate(2deg);
 }

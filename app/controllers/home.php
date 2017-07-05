@@ -100,7 +100,7 @@ class Home extends Controller
             $htmlHourlyWeather .=
                 '<div class="hourlyForecast">
                     <div class="timeDisplay">
-                        <span class="hoursMinutes">' . $hour . ':' . $minute. '</span>
+                        <span class="hoursMinutes">' . $hour . ':' . $minute . '</span>
 
                     </div>
                     <p class="hourlyConditions">' . $hourlyCondition . '</p>
@@ -144,16 +144,18 @@ class Home extends Controller
     //  Photo frame
     /////////////////////////////////////////////////
 
-    public function photoFrame(){
+    public function photoFrame()
+    {
 
         $model = $this->model('Model');
 
         $photoPath = $model->getPhotoFromFolder();
 
         $htmlPhotoFrame =
-            '<div>
-                <img src="/home-dashboard/public/usb/'. $photoPath .'">
-            </div>';
+            '<section class="polaroids">
+                <img id="imagePin" src="/home-dashboard/public/pic/pin-png-39474.png" >
+                <img id="familyPhoto" src="/home-dashboard/public/usb/' . $photoPath . '">
+            </section>';
 
         return $htmlPhotoFrame;
     }
