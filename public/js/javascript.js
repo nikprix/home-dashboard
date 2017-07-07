@@ -349,6 +349,10 @@ function getPicture() {
             $("#photoFrame").html('');
 
             $("#photoFrame").html(html);
+        },
+        complete: function (data) {
+            // removing classes before adding
+            $('section img#familyPhoto').removeClass();
             setImageSize();
         }
     });
