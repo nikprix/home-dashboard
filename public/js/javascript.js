@@ -345,7 +345,9 @@ function getPicture() {
         data: "block=photoFrame",
         success: function (html) {
             // clearing previous entries
+            $("#photoFrame").empty();
             $("#photoFrame").html('');
+
             $("#photoFrame").html(html);
             setImageSize();
         }
@@ -412,11 +414,15 @@ function colorSTMUsers() {
 function setImageSize(){
     $('section img#familyPhoto').each(function(){
         // checking image orientation
-        if ($(this).width()/$(this).height() >= 1) {
-            $(this).addClass('landscape');
-        } else {
-            $(this).addClass('portrait');
-        }
+        //if ($(this).width() > $(this).height()) {
+        //    $(this).addClass('landscape');
+        //} else {
+        //    $(this).addClass('portrait');
+        //}
+
+        // new solution:
+        $(this).addClass(this.width > this.height ? 'landscape' : 'portrait');
+
     });
 }
 
