@@ -269,7 +269,7 @@ div#photoFrame {
     top: 500px;
     padding-top: 20px;
     width: 600px;
-    height: 500px;
+    height: 540px;
     position: absolute;
     overflow: hidden;
     text-align: center;
@@ -283,15 +283,6 @@ section.polaroids{
     margin-left: auto;
     margin-right: auto;
 }
-
-/*section img#imagePin {*/
-    /*width: 30px;*/
-    /*height: auto;*/
-    /*position: relative;*/
-    /*top: -480px;*/
-    /*left: 250px;*/
-    /*z-index: 1;*/
-/*}*/
 
 section img#imagePin {
     width: 35px;
@@ -315,7 +306,7 @@ section img#familyPhoto.landscape {
 }
 
 section img#familyPhoto.portrait {
-    max-height: 460px;
+    max-height: 480px;
     height: 100%;
     width: auto;
 }
