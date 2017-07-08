@@ -275,13 +275,33 @@ div#photoFrame {
     text-align: center;
 }
 
+section.polaroids{
+    top: 40px;
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/*section img#imagePin {*/
+    /*width: 30px;*/
+    /*height: auto;*/
+    /*position: relative;*/
+    /*top: -480px;*/
+    /*left: 250px;*/
+    /*z-index: 1;*/
+/*}*/
+
 section img#imagePin {
-    width: 30px;
-    height: auto;
-    position: relative;
-    top: -480px;
-    left: 250px;
+    width: 35px;
+    position: absolute;
     z-index: 1;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    top: -25px;
 }
 
 section img#familyPhoto {

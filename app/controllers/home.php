@@ -151,10 +151,18 @@ class Home extends Controller
 
         $photoPath = $model->getPhotoFromFolder();
 
+        $imagePath = '../../public/usb/' . $photoPath;
+
+        // retrieving image's metadata to assign correct class for displaying
+        list($width, $height) = getimagesize($imagePath);
+        // getting correct class
+        $class = ($width > $height) ? 'landscape' : 'portrait';
+
+
         $htmlPhotoFrame =
             '<section class="polaroids">
                 <img id="imagePin" src="/home-dashboard/public/pic/pin-png-39474.png" >
-                <img id="familyPhoto" src="/home-dashboard/public/usb/' . $photoPath . '">
+                <img id="familyPhoto" src="/home-dashboard/public/usb/' . $photoPath . '" class="'. $class . '">
             </section>';
 
         return $htmlPhotoFrame;

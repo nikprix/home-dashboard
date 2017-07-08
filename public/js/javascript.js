@@ -1,6 +1,6 @@
 $(function () {
     clock();
-    meteo();
+    //meteo();
     getPicture();
 
     if (typeof TWEETS != 'undefined') {
@@ -349,11 +349,6 @@ function getPicture() {
             $("#photoFrame").html('');
 
             $("#photoFrame").html(html);
-        },
-        complete: function (data) {
-            // removing classes before adding
-            $('section img#familyPhoto').removeClass();
-            setImageSize();
         }
     });
 }
@@ -414,29 +409,13 @@ function colorSTMUsers() {
 
 }
 
-/** Fixes photo sizes for portrait and landscape images */
-function setImageSize(){
-    $('section img#familyPhoto').each(function(){
-        // checking image orientation
-        //if ($(this).width() > $(this).height()) {
-        //    $(this).addClass('landscape');
-        //} else {
-        //    $(this).addClass('portrait');
-        //}
-
-        // new solution:
-        $(this).addClass(this.width > this.height ? 'landscape' : 'portrait');
-
-    });
-}
-
 /////////////// setting timeouts ///////////////
 window.setInterval(function () {
     TWEETS.loadTweets();
 }, 60000); // 1 minute
 
 window.setInterval(function () {
-    meteo();
+    //meteo();
 }, 600000); // 10 minutes
 
 window.setInterval(function () {
