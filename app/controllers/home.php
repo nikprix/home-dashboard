@@ -179,7 +179,8 @@ class Home extends Controller
 
         $allEvents = $model->getGoogleCalendarEvents();
 
-        $eventsHtml = '<p>TESTING EVENTS</p><pre>' . print_r($allEvents) . '</pre>';
+        $eventsHtml = '<p>TESTING EVENTS</p>
+                        <p>' . print_r($allEvents) . '</p>';
 
         return $eventsHtml;
 

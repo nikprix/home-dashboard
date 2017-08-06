@@ -75,30 +75,65 @@ class Model
         return basename($randomImage);
     }
 
-//////////////////////////    Photo Frame    //////////////////////////
+//////////////////////////    Calendar    //////////////////////////
 
     public function getGoogleCalendarEvents()
     {
+        $prop_array = parse_ini_file($_SERVER['DOCUMENT_ROOT'] . '/home-dashboard/app/config.ini.php');
 
-        set_include_path(get_include_path() . PATH_SEPARATOR . $_SERVER['DOCUMENT_ROOT'] .
-            '/home-dashboard/app/libs/Google/google-api-php-client-master/src');
+        // ! important - google-api-php-lib was loaded using composer
+        require_once $_SERVER['DOCUMENT_ROOT'] . '/home-dashboard/app/libs/google-apis/autoload.php';
 
-        require_once 'Google/autoload.php';
-        require_once 'Google/Client.php';
+        // getting google auth file's path
+        $key_file = $_SERVER['DOCUMENT_ROOT'] . $prop_array['gogl_setting_file'];
 
-
-
-        $key_file = $_SERVER['DOCUMENT_ROOT'] . '/home-dashboard/app/libs/Google/dash-cal';
-
+        // loading auth credentials
         putenv('GOOGLE_APPLICATION_CREDENTIALS=' . $key_file);
 
         $client = new Google_Client();
+        // authenticating
         $client->useApplicationDefaultCredentials();
+        // ! important - setting scopes
+        $client->setScopes(['https://www.googleapis.com/auth/calendar.readonly']);
+
 
         $calendar_Service = new Google_Service_Calendar($client);
 
 
-        $events = $calendar_Service->calendarList->listCalendarList();
+        $calendarList = $calendar_Service->calendarList->listCalendarList();
+
+        $eventsArray = array();
+
+
+        while(true) {
+            foreach ($calendarList->getItems() as $calendarListEntry) {
+
+                echo $calendarListEntry->getSummary()."\n";
+
+
+                // get events
+                //$events = $calendar_Service->events->listEvents($calendarListEntry->id);
+                $events = $calendar_Service->events->listEvents($calendarListEntry->id, array
+                ('timeMin'=>'2017-08-06T00:00:00-04:00', 'timeMax'=>'2017-08-09T23:59:59-04:00'));
+
+
+                foreach ($events->getItems() as $event) {
+                    echo "<br>-----".$event->getSummary(). "-------<br>";
+
+                    array_push($eventsArray, $event->getSummary());
+
+                }
+            }
+
+            $pageToken = $calendarList->getNextPageToken();
+
+            if ($pageToken) {
+                $optParams = array('pageToken' => $pageToken);
+                $calendarList = $calendar_Service->calendarList->listCalendarList($optParams);
+            } else {
+                break;
+            }
+        }
 
         return $events;
 
