@@ -1,0 +1,413 @@
+body {
+    background-color: rgba(0, 0, 50, 1);
+    font-family: Verdana, "Courier New", "Lucida Console";
+    font-size: 14px;
+    font-weight: normal;
+    padding: 0px;
+    margin: 0px;
+    overflow: hidden;
+}
+
+div, table, tr, td, th, h1, h2, h3, a, span, p, pre, fieldset, input, textarea, form, img, select {
+    font-family: Verdana, "Courier New", "Lucida Console";
+    font-size: 14px;
+    font-weight: normal;
+    padding: 0px;
+    margin: 0px;
+    color: #FFF;
+}
+
+/* main */
+
+div#main {
+    height: 100vh; /* makes DIV to occupy full screen */
+    position: relative;
+    overflow: hidden;
+    background-color: rgba(0, 0, 0, 1);
+    color: #FFF;
+}
+
+/* clock */
+
+div#clock {
+    right: 20px;
+    top: 0px;
+    position: absolute;
+    overflow: hidden;
+    background-color: rgba(0, 0, 0, 1);
+    color: #FFF;
+    font-weight: bold;
+    text-align: center;
+}
+
+div.clock_hour {
+    font-size: 150px;
+    background-color: rgba(0, 0, 0, 1);
+}
+
+div.clock_date {
+    font-size: 40px;
+    background-color: rgba(0, 0, 0, 1);
+}
+
+span.clock_grey {
+    color: #888;
+    font-size: inherit;
+}
+
+#weekDay {
+    font-size: 27px !important;
+}
+
+/* meteo */
+
+div#meteo {
+    right: 450px;
+    top: 20px;
+    position: absolute;
+    overflow: hidden;
+    background-color: rgba(0, 0, 0, 1);
+    color: #FFF;
+    font-weight: bold;
+    text-align: center;
+}
+
+div#meteo_black {
+    right: 0px;
+    top: 420px;
+    width: 600px;
+    height: 100px;
+    position: absolute;
+    z-index: 9999;
+    background-color: rgba(0, 0, 0, 1);
+}
+
+#meteo #dailyBlock {
+
+}
+
+div.dayForecast {
+    width: 130px;
+    float: left;
+    margin: 10px 20px;
+}
+
+div.weekDay {
+    display: inline-block;
+    font-size: 22px;
+    font-weight: 700;
+    text-transform: uppercase;
+    text-align: center;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+span.monthDay {
+    display: block;
+    text-align: center;
+    font-size: 15px;
+    color: #c0c0c0;
+    font-weight: 700;
+    text-transform: none;
+}
+
+p.conditions {
+    text-align: center;
+    font-size: 17px;
+    color: #c0c0c0;
+    max-width: 130px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+div.temperature {
+    text-align: center;
+    display: inline-block;
+}
+
+span.maxTemp {
+    color: #EB1924;
+    font-size: 22px;
+    font-weight: 700;
+}
+
+span.lowTemp {
+    color: #0076BA;
+    font-size: 22px;
+    font-weight: 700;
+}
+
+/*Hourly*/
+
+#meteo #hourlyBlock {
+}
+
+div.hourlyForecast {
+    width: 110px;
+    text-align: center;
+    margin-top: 20px;
+    margin-right: 20px;
+    float: left;
+}
+
+div.timeDisplay {
+    text-align: center;
+    display: inline;
+}
+
+span.hoursMinutes {
+    text-align: center;
+    color: #00ABEB;
+    font-size: 18px;
+    font-weight: 700;
+}
+
+p.hourlyConditions {
+    text-align: center;
+    font-size: 15px;
+    color: #c0c0c0;
+    max-width: 110px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+div.hourlyTemperature {
+}
+
+span.currentTemp {
+    text-align: center;
+    font-size: 22px;
+    font-weight: 700;
+    display: inline;
+}
+
+span.celsDegree {
+    text-align: center;
+    font-size: 22px;
+    font-weight: 500;
+    display: inline;
+    margin-left: -3px;
+}
+
+img.hourlyWeatherIcon {
+    max-height: 37px;
+    max-width: 37px;
+    object-fit: cover;
+}
+
+#hourlyWeatherChart {
+    width: 1375px !important;
+}
+
+/** twitter **/
+
+div#twitter {
+    width: 300px;
+    right: 1100px;
+    top: 500px;
+    position: absolute;
+    overflow: hidden;
+    background-color: rgba(0, 0, 0, 1);
+    color: #FFF;
+    font-weight: bold;
+    text-align: center;
+    font-size: 15px;
+}
+
+#twitter .item {
+    font-size: 15px;
+    width: 99%;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    -webkit-box-shadow: 0 0 3px 1px rgba(100, 100, 100, 0.2);
+    -moz-box-shadow: 0 0 3px 1px rgba(100, 100, 100, 0.2);
+    box-shadow: 0 0 3px 1px rgba(100, 100, 100, 0.2);
+    overflow: hidden;
+    background: #000000;
+}
+
+#twitter .tweet-wrapper {
+    font-size: 15px;
+    padding: 10px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    line-height: 16px;
+}
+
+#twitter .item a {
+    font-size: 15px;
+    text-decoration: none;
+    color: #00ABEB;
+}
+
+#twitter .item img {
+    width: 100%;
+}
+
+#twitter .item a:hover {
+    text-decoration: underline;
+}
+
+#twitter .item .text {
+    font-size: 15px;
+}
+
+#twitter .item .time, #twitter .tweet .user {
+    font-style: italic;
+    color: #666666;
+}
+
+/** PHOTO FRAME **/
+
+div#photoFrame {
+    left: 20px;
+    top: 500px;
+    padding-top: 20px;
+    width: 600px;
+    height: 540px;
+    position: absolute;
+    overflow: hidden;
+    text-align: center;
+}
+
+section.polaroids {
+    top: 40px;
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+section img#imagePin {
+    width: 35px;
+    position: absolute;
+    z-index: 1;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    top: -25px;
+}
+
+section img#familyPhoto {
+    overflow: hidden;
+}
+
+section img#familyPhoto.landscape {
+    max-width: 560px;
+    width: 100%;
+    height: auto;
+}
+
+section img#familyPhoto.portrait {
+    max-height: 480px;
+    height: 100%;
+    width: auto;
+}
+
+/* Polaroid effects */
+section.polaroids img#familyPhoto {
+    background: #fff;
+    display: inline;
+    width: auto;
+    padding: 10px 10px 20px;
+}
+
+/* Tilt all landscape images -2 degrees */
+section.polaroids img#familyPhoto.landscape {
+    -webkit-transform: rotate(-2deg);
+    -moz-transform: rotate(-2deg);
+}
+
+/* Rotate all portrait images 2 degrees */
+section.polaroids img#familyPhoto.portrait {
+    -webkit-transform: rotate(2deg);
+    -moz-transform: rotate(2deg);
+}
+
+/** End PHOTO FRAME **/
+
+/** Start Calendar **/
+
+div#calendarEventsTest{
+    left: 1200px;
+    top: 400px;
+    padding-top: 20px;
+    width: 400px;
+    margin: 0 auto;
+    height: 900px;
+    position: absolute;
+    overflow: hidden;
+    text-align: center;
+}
+
+div#calendar {
+    left: 1700px;
+    top: 400px;
+    padding-top: 20px;
+    width: 400px;
+    margin: 0 auto;
+    height: 900px;
+    position: absolute;
+    overflow: hidden;
+    text-align: center;
+}
+
+div#calendar .fc th, .fc td, .fc hr, .fc thead, .fc tbody, .fc-row {
+    background: rgba(255, 255, 255, 0.03) !important;
+    /*background: #13caf4 !important;*/
+}
+
+div#calendar .fc-event {
+    background: #0076BA !important;
+    /*color: #f2f2f2 !important;*/
+}
+
+div#calendar .fc-unthemed .fc-content, .fc-unthemed .fc-divider, .fc-unthemed .fc-list-heading td, .fc-unthemed .fc-list-view, .fc-unthemed .fc-popover, .fc-unthemed .fc-row, .fc-unthemed tbody, .fc-unthemed td, .fc-unthemed th, .fc-unthemed thead {
+    border-color: rgba(255, 255, 255, 0.03) !important;
+}
+
+div#calendar .fc .fc-row {
+    border-style: solid;
+    border-width: 0;
+}
+
+div#calendar .fc td, .fc th {
+    border-style: solid;
+    border-width: 1px;
+    padding: 0;
+    vertical-align: top;
+}
+
+.fc-day-header {
+    background-color: #512F50 !important;
+    /*background-color: #00ABEB !important;*/
+    /*background-color: #0076BA !important;*/
+    background-image: none;
+    color: #fff;
+    font-family: 'existencelight';
+    text-shadow: 1px 1px 1px #333;
+}
+
+/** END Calendar **/
+
+/** Start Kids Learn Images **/
+
+div#kidsLearn {
+    left: 1500px;
+    top: 600px;
+    padding-top: 20px;
+    width: 450px;
+    height: 450px;
+    position: absolute;
+    overflow: hidden;
+    text-align: center;
+}
+
+/** END Kids Learn Images **/
