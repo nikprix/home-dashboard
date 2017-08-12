@@ -387,7 +387,7 @@ function getCalendar() {
              center define what will be at center position in calendar
              right define what will be at right position in calendar
              */
-            height: 1070,
+            height: 565,
             header: {
                 left: '',
                 center: '',
@@ -405,7 +405,7 @@ function getCalendar() {
              */
             defaultView: 'agendaThreeDay',
             allDaySlot: false,
-            slotDuration: '00:30:00',
+            slotDuration: '01:00:00',
             displayEventTime: false,
             eventSources: [
                 {
