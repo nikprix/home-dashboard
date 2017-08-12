@@ -58,7 +58,7 @@ class Home extends Controller
             $newIconUrl = str_replace('/' . $replace . '/', '/' . $newIconType . '/', $iconUrl);
 
             // replacing current day string with 'TODAY'. Also, here we are using default timezone
-            ($weekDay == date('l') && $date == getdate(date("U"))[mday]) ? $weekDay = 'today' : $weekDay;
+            ($weekDay == date('l') && $date == getdate(date("U"))['mday']) ? $weekDay = 'today' : $weekDay;
 
             $htmlDailyWeather .=
                 '<div class="dayForecast">

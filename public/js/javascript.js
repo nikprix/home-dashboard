@@ -422,23 +422,23 @@ function getCalendar() {
 
                 {
                     events: [
-                        {
-                            title: 'Meeting',
-                            start: new Date(y, m, d, 16, 30),
-                            allDay: false
-                        },
-                        {
-                            title: 'Lunch',
-                            start: new Date(y, m, d, 12, 0),
-                            end: new Date(y, m, d, 14, 0),
-                            allDay: false
-                        },
-                        {
-                            title: 'Birthday Party',
-                            start: new Date(y, m, d + 1, 19, 0),
-                            end: new Date(y, m, d + 1, 22, 30),
-                            allDay: false
-                        }
+                        //{
+                        //    title: 'Meeting',
+                        //    start: new Date(y, m, d, 16, 30),
+                        //    allDay: false
+                        //},
+                        //{
+                        //    title: 'Lunch',
+                        //    start: new Date(y, m, d, 12, 0),
+                        //    end: new Date(y, m, d, 14, 0),
+                        //    allDay: false
+                        //},
+                        //{
+                        //    title: 'Birthday Party',
+                        //    start: new Date(y, m, d + 1, 19, 0),
+                        //    end: new Date(y, m, d + 1, 22, 30),
+                        //    allDay: false
+                        //}
                     ]
                 }
             ]
@@ -528,7 +528,7 @@ window.setInterval(function () {
 }, 300000); // 5 minutes
 
 window.setInterval(function () {
-    getPicture();
+    getCalendar();
 }, 900000); // 15 minutes
 
 
