@@ -383,7 +383,7 @@ function getCalendar() {
         {
             /*
              Header option will define our calendar header.
-             left define what will be at left position in calendar
+             Left define what will be at left position in calendar
              center define what will be at center position in calendar
              right define what will be at right position in calendar
              */
