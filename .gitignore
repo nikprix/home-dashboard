@@ -1,4 +1,7 @@
 .idea/
+app/libs/Google-Cal-Keys/
+app/libs/Google-Cal-Keys
 app/config.ini.php
+composer.lock
 usb/
 /usb/

@@ -1,7 +1,13 @@
 $(function () {
     clock();
+<<<<<<< HEAD
     meteo();
     getPicture();
+=======
+    //meteo();
+    getPicture();
+    getCalendar();
+>>>>>>> f718f9d01b5631caa7892e59722ecde5d7c6a69e
 
     if (typeof TWEETS != 'undefined') {
         TWEETS.loadTweets();
@@ -74,7 +80,11 @@ function meteo() {
         }
     });
     console.log('weather refreshed!');
+<<<<<<< HEAD
    // meteo_timeout = setTimeout("meteo()", 3600000);
+=======
+    // meteo_timeout = setTimeout("meteo()", 3600000);
+>>>>>>> f718f9d01b5631caa7892e59722ecde5d7c6a69e
 }
 
 /** builds simple graph using chartjs.org lib **/
@@ -163,7 +173,13 @@ TWEETS = {
         var request;
 
         request = {
+<<<<<<< HEAD
             //q: "q=from:DCV_Montreal+OR+from:stminfo+OR+from:stm_Verte+OR+from:stm_Orange+OR+from:stm_Jaune+%23stminfo+since:" + getTodayDate(),
+=======
+            //q:
+            // "q=from:DCV_Montreal+OR+from:stminfo+OR+from:stm_Verte+OR+from:stm_Orange+OR+from:stm_Jaune+%23stminfo+since:"
+            // + getTodayDate(),
+>>>>>>> f718f9d01b5631caa7892e59722ecde5d7c6a69e
             q: "q=%23stminfo+-filter:retweets+since:" + getTodayDate(),
             block: "twitter"
         }
@@ -354,6 +370,111 @@ function getPicture() {
 }
 
 
+<<<<<<< HEAD
+=======
+/** load calendar **/
+
+function getCalendar() {
+
+    /*
+     date store today date.
+     d store today date.
+     m store current month.
+     y store current year.
+     */
+    var date = new Date();
+    var d = date.getDate();
+    var m = date.getMonth();
+    var y = date.getFullYear();
+
+    /*
+     Initialize fullCalendar and store into variable.
+     Why in variable?
+     Because doing so we can use it inside other function.
+     In order to modify its option later.
+     */
+
+    var calendar = $('#calendar').fullCalendar(
+        {
+            /*
+             header option will define our calendar header.
+             left define what will be at left position in calendar
+             center define what will be at center position in calendar
+             right define what will be at right position in calendar
+             */
+            height: 1070,
+            header: {
+                left: '',
+                center: '',
+                right: ''
+            },
+            views: {
+                agendaThreeDay: {
+                    type: 'agenda',
+                    duration: {days: 3}
+                }
+            },
+            /*
+             defaultView option used to define which view to show by default,
+             for example we have used agendaWeek.
+             */
+            defaultView: 'agendaThreeDay',
+            allDaySlot: false,
+            slotDuration: '00:30:00',
+            displayEventTime: false,
+            eventSources: [
+                {
+                    async: true,
+                    url: "../app/core/ajax.php",
+                    type: 'GET',
+                    data: {
+                        block: 'calendar'
+                    },
+                    error: function () {
+                        alert('there was an error while fetching events!');
+                    }
+                },
+
+                {
+                    events: [
+                        {
+                            title: 'Meeting',
+                            start: new Date(y, m, d, 16, 30),
+                            allDay: false
+                        },
+                        {
+                            title: 'Lunch',
+                            start: new Date(y, m, d, 12, 0),
+                            end: new Date(y, m, d, 14, 0),
+                            allDay: false
+                        },
+                        {
+                            title: 'Birthday Party',
+                            start: new Date(y, m, d + 1, 19, 0),
+                            end: new Date(y, m, d + 1, 22, 30),
+                            allDay: false
+                        }
+                    ]
+                }
+            ]
+        });
+
+    ////// TESTING getting CALENDAR EVENTS from GOOGLE Calendar //////
+
+    //$.ajax({
+    //    async: false,
+    //    type: "GET",
+    //    url: "../app/core/ajax.php",
+    //    data: "block=calendar",
+    //    success: function (json) {
+    //        $("#calendarEventsTest").html(json);
+    //    }
+    //});
+
+}
+
+
+>>>>>>> f718f9d01b5631caa7892e59722ecde5d7c6a69e
 /** HELPER FUNCTIONS **/
 
 /** reduces font size **/
@@ -415,7 +536,11 @@ window.setInterval(function () {
 }, 60000); // 1 minute
 
 window.setInterval(function () {
+<<<<<<< HEAD
     meteo();
+=======
+    //meteo();
+>>>>>>> f718f9d01b5631caa7892e59722ecde5d7c6a69e
 }, 600000); // 10 minutes
 
 window.setInterval(function () {
