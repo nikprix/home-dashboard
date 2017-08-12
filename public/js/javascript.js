@@ -397,7 +397,7 @@ function getCalendar() {
     var calendar = $('#calendar').fullCalendar(
         {
             /*
-             header option will define our calendar header.
+             Header option will define our calendar header.
              left define what will be at left position in calendar
              center define what will be at center position in calendar
              right define what will be at right position in calendar
