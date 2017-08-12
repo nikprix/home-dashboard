@@ -362,6 +362,17 @@ function getPicture() {
 function getCalendar() {
 
     /*
+     date store today date.
+     d store today date.
+     m store current month.
+     y store current year.
+     */
+    var date = new Date();
+    var d = date.getDate();
+    var m = date.getMonth();
+    var y = date.getFullYear();
+
+    /*
      Initialize fullCalendar and store into variable.
      Why in variable?
      Because doing so we can use it inside other function.
@@ -376,7 +387,7 @@ function getCalendar() {
              center define what will be at center position in calendar
              right define what will be at right position in calendar
              */
-            height: 565,
+            height: 1070,
             header: {
                 left: '',
                 center: '',
@@ -394,7 +405,7 @@ function getCalendar() {
              */
             defaultView: 'agendaThreeDay',
             allDaySlot: false,
-            slotDuration: '01:00:00',
+            slotDuration: '00:30:00',
             displayEventTime: false,
             eventSources: [
                 {
@@ -407,6 +418,28 @@ function getCalendar() {
                     error: function () {
                         alert('there was an error while fetching events!');
                     }
+                },
+
+                {
+                    events: [
+                        {
+                            title: 'Meeting',
+                            start: new Date(y, m, d, 16, 30),
+                            allDay: false
+                        },
+                        {
+                            title: 'Lunch',
+                            start: new Date(y, m, d, 12, 0),
+                            end: new Date(y, m, d, 14, 0),
+                            allDay: false
+                        },
+                        {
+                            title: 'Birthday Party',
+                            start: new Date(y, m, d + 1, 19, 0),
+                            end: new Date(y, m, d + 1, 22, 30),
+                            allDay: false
+                        }
+                    ]
                 }
             ]
         });

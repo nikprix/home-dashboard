@@ -348,12 +348,12 @@ div#calendarEventsTest{
 }
 
 div#calendar {
-    left: 1700px;
-    top: 400px;
+    right: 20px;
+    top: 250px;
     padding-top: 20px;
     width: 400px;
     margin: 0 auto;
-    height: 900px;
+    height: 1070px;
     position: absolute;
     overflow: hidden;
     text-align: center;
