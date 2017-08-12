@@ -206,13 +206,8 @@ img.hourlyWeatherIcon {
 
 div#twitter {
     width: 300px;
-<<<<<<< HEAD
-    right: 20px;
-    top: 350px;
-=======
     right: 1100px;
     top: 500px;
->>>>>>> f718f9d01b5631caa7892e59722ecde5d7c6a69e
     position: absolute;
     overflow: hidden;
     background-color: rgba(0, 0, 0, 1);
@@ -280,11 +275,7 @@ div#photoFrame {
     text-align: center;
 }
 
-<<<<<<< HEAD
-section.polaroids{
-=======
 section.polaroids {
->>>>>>> f718f9d01b5631caa7892e59722ecde5d7c6a69e
     top: 40px;
     position: absolute;
     left: 0;
@@ -339,8 +330,6 @@ section.polaroids img#familyPhoto.portrait {
     -webkit-transform: rotate(2deg);
     -moz-transform: rotate(2deg);
 }
-<<<<<<< HEAD
-=======
 
 /** End PHOTO FRAME **/
 
@@ -422,4 +411,3 @@ div#kidsLearn {
 }
 
 /** END Kids Learn Images **/
->>>>>>> f718f9d01b5631caa7892e59722ecde5d7c6a69e

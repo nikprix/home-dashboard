@@ -41,8 +41,6 @@ if ($block == 'twitter') {
 
 if ($block == 'photoFrame') {
     echo $homeContr->photoFrame();
-<<<<<<< HEAD
-=======
 }
 
 
@@ -52,5 +50,4 @@ if ($block == 'photoFrame') {
 
 if ($block == 'calendar') {
     echo $homeContr->calendar();
->>>>>>> f718f9d01b5631caa7892e59722ecde5d7c6a69e
 }
