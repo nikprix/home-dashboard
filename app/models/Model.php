@@ -1,11 +1,17 @@
 <?php
 
+<<<<<<< HEAD
+class Model
+{
+
+=======
 require_once $_SERVER['DOCUMENT_ROOT'] . '/home-dashboard/app/models/entities/Event.php';
 
 class Model
 {
 
 
+>>>>>>> f718f9d01b5631caa7892e59722ecde5d7c6a69e
     public function __construct()
     {
         //include $_SERVER['DOCUMENT_ROOT'] . '/home-dashboard/app/libs/TwitterAPIExchange.php';
@@ -78,6 +84,8 @@ class Model
         return basename($randomImage);
     }
 
+<<<<<<< HEAD
+=======
 //////////////////////////    Calendar    //////////////////////////
 
     public function getGoogleCalendarEvents()
@@ -159,5 +167,6 @@ class Model
 
     }
 
+>>>>>>> f718f9d01b5631caa7892e59722ecde5d7c6a69e
 
 }

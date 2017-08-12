@@ -1,8 +1,13 @@
 $(function () {
     clock();
+<<<<<<< HEAD
+    meteo();
+    getPicture();
+=======
     //meteo();
     getPicture();
     getCalendar();
+>>>>>>> f718f9d01b5631caa7892e59722ecde5d7c6a69e
 
     if (typeof TWEETS != 'undefined') {
         TWEETS.loadTweets();
@@ -75,7 +80,11 @@ function meteo() {
         }
     });
     console.log('weather refreshed!');
+<<<<<<< HEAD
+   // meteo_timeout = setTimeout("meteo()", 3600000);
+=======
     // meteo_timeout = setTimeout("meteo()", 3600000);
+>>>>>>> f718f9d01b5631caa7892e59722ecde5d7c6a69e
 }
 
 /** builds simple graph using chartjs.org lib **/
@@ -164,9 +173,13 @@ TWEETS = {
         var request;
 
         request = {
+<<<<<<< HEAD
+            //q: "q=from:DCV_Montreal+OR+from:stminfo+OR+from:stm_Verte+OR+from:stm_Orange+OR+from:stm_Jaune+%23stminfo+since:" + getTodayDate(),
+=======
             //q:
             // "q=from:DCV_Montreal+OR+from:stminfo+OR+from:stm_Verte+OR+from:stm_Orange+OR+from:stm_Jaune+%23stminfo+since:"
             // + getTodayDate(),
+>>>>>>> f718f9d01b5631caa7892e59722ecde5d7c6a69e
             q: "q=%23stminfo+-filter:retweets+since:" + getTodayDate(),
             block: "twitter"
         }
@@ -357,6 +370,8 @@ function getPicture() {
 }
 
 
+<<<<<<< HEAD
+=======
 /** load calendar **/
 
 function getCalendar() {
@@ -459,6 +474,7 @@ function getCalendar() {
 }
 
 
+>>>>>>> f718f9d01b5631caa7892e59722ecde5d7c6a69e
 /** HELPER FUNCTIONS **/
 
 /** reduces font size **/
@@ -520,7 +536,11 @@ window.setInterval(function () {
 }, 60000); // 1 minute
 
 window.setInterval(function () {
+<<<<<<< HEAD
+    meteo();
+=======
     //meteo();
+>>>>>>> f718f9d01b5631caa7892e59722ecde5d7c6a69e
 }, 600000); // 10 minutes
 
 window.setInterval(function () {
