@@ -207,7 +207,7 @@ img.hourlyWeatherIcon {
 div#twitter {
     width: 300px;
     right: 1100px;
-    top: 500px;
+    top: 550px;
     position: absolute;
     overflow: hidden;
     background-color: rgba(0, 0, 0, 1);
@@ -266,7 +266,7 @@ div#twitter {
 
 div#photoFrame {
     left: 20px;
-    top: 500px;
+    top: 550px;
     padding-top: 20px;
     width: 600px;
     height: 540px;
@@ -353,7 +353,7 @@ div#calendar {
     padding-top: 20px;
     width: 400px;
     margin: 0 auto;
-    height: 565px;
+    height: 590px;
     position: absolute;
     overflow: hidden;
     text-align: center;
