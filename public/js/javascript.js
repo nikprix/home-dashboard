@@ -1,6 +1,6 @@
 $(function () {
     clock();
-    //meteo();
+    meteo();
     getPicture();
     getCalendar();
 
@@ -387,7 +387,7 @@ function getCalendar() {
              center define what will be at center position in calendar
              right define what will be at right position in calendar
              */
-            height: 565,
+            height: 585,
             header: {
                 left: '',
                 center: '',
@@ -520,7 +520,7 @@ window.setInterval(function () {
 }, 60000); // 1 minute
 
 window.setInterval(function () {
-    //meteo();
+    meteo();
 }, 600000); // 10 minutes
 
 window.setInterval(function () {
