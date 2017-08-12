@@ -266,7 +266,7 @@ div#twitter {
 
 div#photoFrame {
     left: 20px;
-    top: 550px;
+    top: 520px;
     padding-top: 20px;
     width: 600px;
     height: 540px;
@@ -353,7 +353,7 @@ div#calendar {
     padding-top: 20px;
     width: 400px;
     margin: 0 auto;
-    height: 590px;
+    height: 600px;
     position: absolute;
     overflow: hidden;
     text-align: center;
