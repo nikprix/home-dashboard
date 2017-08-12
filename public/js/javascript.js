@@ -75,7 +75,7 @@ function meteo() {
         }
     });
     console.log('weather refreshed!');
-   // meteo_timeout = setTimeout("meteo()", 3600000);
+    // meteo_timeout = setTimeout("meteo()", 3600000);
 }
 
 /** builds simple graph using chartjs.org lib **/
@@ -164,7 +164,9 @@ TWEETS = {
         var request;
 
         request = {
-            //q: "q=from:DCV_Montreal+OR+from:stminfo+OR+from:stm_Verte+OR+from:stm_Orange+OR+from:stm_Jaune+%23stminfo+since:" + getTodayDate(),
+            //q:
+            // "q=from:DCV_Montreal+OR+from:stminfo+OR+from:stm_Verte+OR+from:stm_Orange+OR+from:stm_Jaune+%23stminfo+since:"
+            // + getTodayDate(),
             q: "q=%23stminfo+-filter:retweets+since:" + getTodayDate(),
             block: "twitter"
         }
@@ -360,17 +362,6 @@ function getPicture() {
 function getCalendar() {
 
     /*
-     date store today date.
-     d store today date.
-     m store current month.
-     y store current year.
-     */
-    var date = new Date();
-    var d = date.getDate();
-    var m = date.getMonth();
-    var y = date.getFullYear();
-
-    /*
      Initialize fullCalendar and store into variable.
      Why in variable?
      Because doing so we can use it inside other function.
@@ -386,8 +377,7 @@ function getCalendar() {
              right define what will be at right position in calendar
              */
             height: 565,
-            header:
-            {
+            header: {
                 left: '',
                 center: '',
                 right: ''
@@ -395,7 +385,7 @@ function getCalendar() {
             views: {
                 agendaThreeDay: {
                     type: 'agenda',
-                    duration: { days: 3 }
+                    duration: {days: 3}
                 }
             },
             /*
@@ -405,45 +395,33 @@ function getCalendar() {
             defaultView: 'agendaThreeDay',
             allDaySlot: false,
             slotDuration: '01:00:00',
-            events: [
+            displayEventTime: false,
+            eventSources: [
                 {
-                    title: 'Meeting',
-                    start: new Date(y, m, d, 09, 30),
-                    allDay: false
-                },
-                {
-                    title: 'Lunch',
-                    start: new Date(y, m, d, 12, 0),
-                    end: new Date(y, m, d, 14, 0),
-                    allDay: false
-                },
-                {
-                    title: 'Birthday Party',
-                    start: new Date(y, m, d+1, 19, 0),
-                    end: new Date(y, m, d+1, 22, 30),
-                    allDay: false
+                    async: true,
+                    url: "../app/core/ajax.php",
+                    type: 'GET',
+                    data: {
+                        block: 'calendar'
+                    },
+                    error: function () {
+                        alert('there was an error while fetching events!');
+                    }
                 }
             ]
         });
 
     ////// TESTING getting CALENDAR EVENTS from GOOGLE Calendar //////
 
-
-
-
-    $.ajax({
-        async: false,
-        type: "GET",
-        url: "../app/core/ajax.php",
-        data: "block=calendar",
-        success: function (html) {
-            $("#calendarEventsTest").html(html);
-        }
-    });
-
-
-
-
+    //$.ajax({
+    //    async: false,
+    //    type: "GET",
+    //    url: "../app/core/ajax.php",
+    //    data: "block=calendar",
+    //    success: function (json) {
+    //        $("#calendarEventsTest").html(json);
+    //    }
+    //});
 
 }
 

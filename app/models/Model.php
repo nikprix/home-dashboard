@@ -1,7 +1,10 @@
 <?php
 
+require_once $_SERVER['DOCUMENT_ROOT'] . '/home-dashboard/app/models/entities/Event.php';
+
 class Model
 {
+
 
     public function __construct()
     {
@@ -79,10 +82,10 @@ class Model
 
     public function getGoogleCalendarEvents()
     {
-        $prop_array = parse_ini_file($_SERVER['DOCUMENT_ROOT'] . '/home-dashboard/app/config.ini.php');
-
         // ! important - google-api-php-lib was loaded using composer
         require_once $_SERVER['DOCUMENT_ROOT'] . '/home-dashboard/app/libs/google-apis/autoload.php';
+
+        $prop_array = parse_ini_file($_SERVER['DOCUMENT_ROOT'] . '/home-dashboard/app/config.ini.php');
 
         // getting google auth file's path
         $key_file = $_SERVER['DOCUMENT_ROOT'] . $prop_array['gogl_setting_file'];
@@ -94,7 +97,7 @@ class Model
         // authenticating
         $client->useApplicationDefaultCredentials();
         // ! important - setting scopes
-        $client->setScopes(['https://www.googleapis.com/auth/calendar.readonly']);
+        $client->setScopes(Google_Service_Calendar::CALENDAR_READONLY);
 
 
         $calendar_Service = new Google_Service_Calendar($client);
@@ -104,23 +107,39 @@ class Model
 
         $eventsArray = array();
 
+        // events params
+        $optParams = array(
+            'orderBy' => 'startTime',
+            'singleEvents' => TRUE,
+            'timeMin' => date('c', time() - 60 * 60 * 24), // current time minus 24 hours (1 day)
+            'timeMax' => date('c', time() + 60 * 60 * 24 * 3) // current time plus  3 days
+        );
 
-        while(true) {
+
+        while (true) {
             foreach ($calendarList->getItems() as $calendarListEntry) {
 
-                echo $calendarListEntry->getSummary()."\n";
+             //   echo $calendarListEntry->getSummary() . "\n";
 
 
                 // get events
                 //$events = $calendar_Service->events->listEvents($calendarListEntry->id);
-                $events = $calendar_Service->events->listEvents($calendarListEntry->id, array
-                ('timeMin'=>'2017-08-06T00:00:00-04:00', 'timeMax'=>'2017-08-09T23:59:59-04:00'));
+                $events = $calendar_Service->events->listEvents($calendarListEntry->id, $optParams);
 
 
                 foreach ($events->getItems() as $event) {
-                    echo "<br>-----".$event->getSummary(). "-------<br>";
 
-                    array_push($eventsArray, $event->getSummary());
+                    $eventTitle = utf8_encode($event->getSummary());
+
+                    $eventObj = new Event($eventTitle, $event->getStart()->getDateTime(), $event->getEnd()->getDateTime());
+
+                    // DEBUGGING
+//                    echo "<br>-----" . $event->getSummary() . "-------<br>";
+//                    echo "-----" . $event->getStart()->getDateTime() . "-------<br>";
+//                    echo "-----" . $event->getEnd()->getDateTime() . "-------<br>";
+//                    echo "<br>";
+
+                    array_push($eventsArray, $eventObj);
 
                 }
             }
@@ -135,7 +154,7 @@ class Model
             }
         }
 
-        return $events;
+        return $eventsArray;
 
 
     }
