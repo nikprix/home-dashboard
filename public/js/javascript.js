@@ -1,6 +1,6 @@
 $(function () {
     clock();
-    //meteo();
+    meteo();
     getPicture();
     getCalendar();
 
@@ -520,12 +520,16 @@ window.setInterval(function () {
 }, 60000); // 1 minute
 
 window.setInterval(function () {
-    //meteo();
+    meteo();
 }, 600000); // 10 minutes
 
 window.setInterval(function () {
     getPicture();
 }, 300000); // 5 minutes
+
+window.setInterval(function () {
+    getPicture();
+}, 900000); // 15 minutes
 
 
 
