@@ -409,6 +409,7 @@ function getCalendar() {
             displayEventTime: false,
             eventSources: [
                 {
+                    //cache: true,
                     async: true,
                     url: "../app/core/ajax.php",
                     type: 'GET',
@@ -520,7 +521,7 @@ window.setInterval(function () {
 }, 60000); // 1 minute
 
 window.setInterval(function () {
-    meteo();
+    //meteo();
 }, 600000); // 10 minutes
 
 window.setInterval(function () {
@@ -528,7 +529,8 @@ window.setInterval(function () {
 }, 300000); // 5 minutes
 
 window.setInterval(function () {
-    getCalendar();
+    // re-fetching all events using .fullCalendar('refetchEvents')
+    $('#calendar').fullCalendar('refetchEvents');
 }, 900000); // 15 minutes
 
 

@@ -129,7 +129,7 @@ class Model
 
                 foreach ($events->getItems() as $event) {
 
-                    $eventTitle = utf8_encode($event->getSummary());
+                    $eventTitle = $event->getSummary();
 
                     $eventObj = new Event($eventTitle, $event->getStart()->getDateTime(), $event->getEnd()->getDateTime());
 
@@ -155,7 +155,6 @@ class Model
         }
 
         return $eventsArray;
-
 
     }
 
