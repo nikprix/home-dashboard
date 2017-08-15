@@ -1,6 +1,6 @@
 $(function () {
     clock();
-    meteo();
+   // meteo();
     getPicture();
     getCalendar();
 
@@ -515,25 +515,35 @@ function colorSTMUsers() {
 
 }
 
-/////////////// setting timeouts ///////////////
+/////////////// setting timeouts and intervals ///////////////
 window.setInterval(function () {
     TWEETS.loadTweets();
 }, 60000); // 1 minute
 
 window.setInterval(function () {
-    meteo();
+   // meteo();
 }, 600000); // 10 minutes
 
 window.setInterval(function () {
     getPicture();
 }, 300000); // 5 minutes
 
+// Essential to run 'destroy' and re-render funstions in the sequence. Using timeouts.
+window.setInterval(function () {
+    window.setTimeout(function() {
+        $('#calendar').fullCalendar('destroy');
+        // set another timeout once the first completes
+        window.setTimeout(function() {
+            getCalendar();
+        }, 1000);
+    }, 1000);
+
+}, 3600000); // 1 hour
+
 window.setInterval(function () {
     // re-fetching all events using .fullCalendar('refetchEvents')
     $('#calendar').fullCalendar('refetchEvents');
 }, 900000); // 15 minutes
-
-
 
 
 
