@@ -161,13 +161,19 @@ TWEETS = {
     // https://dev.twitter.com/docs/using-search
     loadTweets: function () {
 
-        var request;
+        var request_stm;
+        var request_mtl;
 
-        request = {
-            //q:
-            // "q=from:DCV_Montreal+OR+from:stminfo+OR+from:stm_Verte+OR+from:stm_Orange+OR+from:stm_Jaune+%23stminfo+since:"
-            // + getTodayDate(),
-            q: "q=%23stminfo+-filter:retweets+since:" + getTodayDate(),
+        request_stm = {
+            q:
+             "q=from:DCV_Montreal+OR+from:stm_Verte+OR+from:stm_Orange+OR+from:stm_Jaune+%23stminfo+since:"
+             + getTodayDate(),
+            block: "twitter"
+        }
+
+        request_mtl = {
+            q:
+            "q=from:DCV_Montreal+OR+from:factretriever+since:" + getTodayDate(),
             block: "twitter"
         }
 
@@ -176,7 +182,7 @@ TWEETS = {
             url: '../app/core/ajax.php',
             type: 'POST',
             dataType: 'json',
-            data: request,
+            data: request_stm,
             success: function (data, textStatus, xhr) {
                 //console.log('Retrieved Tweets:');
                 //console.log(data);
@@ -205,7 +211,7 @@ TWEETS = {
                             // alert('no media'); }
 
                             $(TWEETS.appendTo)
-                                .append(TWEETS.template.replace('{TEXT}', TWEETS.ify.clean(data.statuses[i].text))
+                                .append(TWEETS.template.replace('{TEXT}', TWEETS.ify.cleanTweet(data.statuses[i].text))
                                     .replace('{USER}', data.statuses[i].user.screen_name)
                                     .replace('{IMG}', img)
                                     .replace('{AGO}', TWEETS.timeAgo(data.statuses[i].created_at))
@@ -214,7 +220,7 @@ TWEETS = {
                         }
 
                     } catch (e) {
-                        alert('item is less than item count');
+                      //  alert('item is less than item count');
                     }
 
                     if (TWEETS.useGridalicious) {
@@ -229,11 +235,63 @@ TWEETS = {
                     // before exiting from this function - coloring tweets:
                     colorSTMUsers();
 
-                } else alert('no data returned');
+                } else alert('Error with Twitter data fetching!');
 
             }
 
+        }).then(function(){
+            return $.ajax({
+                async: false,
+                url: '../app/core/ajax.php',
+                type: 'POST',
+                dataType: 'json',
+                data: request_mtl,
+                success: function (data, textStatus, xhr) {
+
+                    if (xhr.status == 200) {
+
+                        var text, name, img;
+
+                        try {
+                            // append tweets into page
+                            for (var i = 0; i < TWEETS.numTweets; i++) {
+
+                                // exiting loop in case if received amount of tweets is less than wanted to display
+                                if (i == Object.keys(data.statuses).length) break;
+
+                                img = '';
+                                url =
+                                    'http://twitter.com/' + data.statuses[i].user.screen_name + '/status/' + data.statuses[i].id_str;
+
+                                $(TWEETS.appendTo)
+                                    .append(TWEETS.template.replace('{TEXT}', TWEETS.ify.cleanTweet(data.statuses[i].text))
+                                        .replace('{USER}', data.statuses[i].user.screen_name)
+                                        .replace('{IMG}', img)
+                                        .replace('{AGO}', TWEETS.timeAgo(data.statuses[i].created_at))
+                                        .replace('{URL}', url)
+                                    );
+                            }
+
+                        } catch (e) {
+                            //  alert('item is less than item count');
+                        }
+
+                        if (TWEETS.useGridalicious) {
+                            //run grid-a-licious
+                            $(TWEETS.appendTo).gridalicious({
+                                gutter: 13,
+                                width: 200,
+                                animate: true
+                            });
+                        }
+
+                    } else alert('Error with Twitter data fetching!');
+
+                }
+
+            });
         });
+
         console.log('tweet refreshed!');
     },
 
@@ -332,6 +390,23 @@ TWEETS = {
 
         clean: function (tweet) {
             return this.hash(this.at(this.list(this.link(tweet))));
+        },
+
+        removeUrls: function (tweet) {
+            return tweet.replace(/(?:https?|ftp):\/\/[\n\S]+/g, '');
+        },
+
+        removeHashTags: function (tweet) {
+            var regexp = new RegExp('#([^\\s]*)','g');
+            return tweet.replace(regexp, '');
+        },
+
+        removeColon: function (tweet) {
+            return tweet.trim().replace(/:$/g, '');
+        },
+
+        cleanTweet: function (tweet) {
+            return this.removeColon(this.removeHashTags(this.removeUrls(tweet)));
         }
     } // ify
 
@@ -498,6 +573,7 @@ function fixWeatherConditionsLength() {
 
 function getTodayDate() {
     //console.log(moment().format('YYYY-MM-DD'));
+    // return moment().add(-20, 'days').format('YYYY-MM-DD');
     return moment().format('YYYY-MM-DD');
 }
 
