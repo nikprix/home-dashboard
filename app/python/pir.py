@@ -18,8 +18,8 @@ def main():
     while True:
         if io.input(PIR_PIN):
             last_motion_time = time.time()
-            # print("Motion detected!")  ### DEBUG
-            # print ".",   ### DEBUG
+            ### print("Motion detected!")  ### DEBUG
+            ### print ".",   ### DEBUG
             sys.stdout.flush()
             if turned_off:
                 turned_off = False
