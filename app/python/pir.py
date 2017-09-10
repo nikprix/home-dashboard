@@ -7,7 +7,7 @@ import subprocess
 
 io.setmode(io.BCM) # Choose BCM for GPIO address else BOARD for PIN address layout
 io.setwarnings(False)
-SHUTOFF_DELAY = 20  # seconds
+SHUTOFF_DELAY = 15*60  # seconds
 PIR_PIN = 4  # 7 on the board
 
 # DEBUG: see user that's running this script
