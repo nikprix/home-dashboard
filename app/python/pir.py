@@ -1,13 +1,18 @@
 #!/usr/bin/python
 
-import sys
+# import sys
 import time
 import RPi.GPIO as io
 import subprocess
 
-io.setmode(io.BCM)
-SHUTOFF_DELAY = 60  # seconds
+io.setmode(io.BCM) # Choose BCM for GPIO address else BOARD for PIN address layout
+io.setwarnings(False)
+SHUTOFF_DELAY = 20  # seconds
 PIR_PIN = 4  # 7 on the board
+
+# DEBUG: see user that's running this script
+# print('script running as: ')
+# subprocess.call('whoami', shell=True)
 
 
 def main():
@@ -20,7 +25,7 @@ def main():
             last_motion_time = time.time()
             ### print("Motion detected!")  ### DEBUG
             ### print ".",   ### DEBUG
-            sys.stdout.flush()
+            ### sys.stdout.flush() ### Release buffer to the terminal
             if turned_off:
                 turned_off = False
                 turn_on()
@@ -32,11 +37,11 @@ def main():
 
 
 def turn_on():
-    subprocess.call("sh /home/pi/Home_Dashboard/power_Screen_ON.sh", shell=True)
+    subprocess.call("sh /home/pi/Home_Dashboard/wake_Up_Screen.sh", shell=True)
 
 
 def turn_off():
-    subprocess.call("sh /home/pi/Home_Dashboard/power_Screen_OFF.sh", shell=True)
+    subprocess.call("sh /home/pi/Home_Dashboard/sleep_Screen.sh", shell=True)
 
 
 if __name__ == '__main__':
