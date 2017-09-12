@@ -7,12 +7,12 @@ import subprocess
 
 io.setmode(io.BCM) # Choose BCM for GPIO address else BOARD for PIN address layout
 io.setwarnings(False)
-SHUTOFF_DELAY = 15*60  # seconds
+SHUTOFF_DELAY = 10 # 15*60  # seconds
 PIR_PIN = 4  # 7 on the board
 ### Below is the script's termination time that used together with cron job.
 ### For example, cron executes this script at 6:00 in the morning, script runs the whole day
 ### and exits at midnight (24:00)
-TERMINATE_TIME = (18*60*60+30*60) # Terminate script after 18 hours and 30 minutes
+TERMINATE_TIME = 60 # 66600 # (18*60*60+30*60) # Terminate script after 18 hours and 30 minutes
 start = time.time()
 
 # DEBUG: see user that's running this script
