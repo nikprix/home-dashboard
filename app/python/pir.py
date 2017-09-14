@@ -1,6 +1,6 @@
 #!/usr/bin/python
 
-# import sys
+import sys
 import time
 import RPi.GPIO as io
 import subprocess
@@ -22,9 +22,8 @@ def main():
     while True:
         if io.input(PIR_PIN):
             last_motion_time = time.time()
-            ### print("Motion detected!")  ### DEBUG
-            ### print ".",   ### DEBUG
-            ### sys.stdout.flush() ### Release buffer to the terminal
+            print("Motion detected!")  ### DEBUG
+            sys.stdout.flush() ### Release buffer to the terminal
             if turned_off:
                 turned_off = False
                 turn_on()
