@@ -11,7 +11,8 @@
     <!--    <meta http-equiv="refresh" content="6000;url=index.php">-->
     <link href="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.4.0/fullcalendar.min.css" rel="stylesheet"
           type="text/css">
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" type="text/css" rel="stylesheet" />
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" type="text/css"
+          rel="stylesheet"/>
     <link href="../public/css/style.css" rel="stylesheet" type="text/css">
     <script type="text/javascript" src="../public/js/lib/jquery.js"></script>
     <script type="text/javascript" src="../public/js/lib/moment-with-locales.js"></script>
@@ -31,8 +32,10 @@
     <div id="calendar"></div>
     <div id="calendarEventsTest"></div>
 
-
-    <div id="kidsLearn"></div>
+    <div id="trafficData">
+        <iframe src="https://embed.waze.com/iframe?zoom=13&lat=45.4643133&lon=-73.5840901&pin=0" width="500"
+                height="500"></iframe>
+    </div>
 
 </div>
 

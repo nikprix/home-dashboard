@@ -400,12 +400,12 @@ div#calendar .fc td, .fc th {
 
 /** Start Kids Learn Images **/
 
-div#kidsLearn {
-    left: 1500px;
-    top: 600px;
+div#trafficData {
+    right: 440px;
+    top: 500px;
     padding-top: 20px;
-    width: 450px;
-    height: 450px;
+    width: 500px;
+    height: 600px;
     position: absolute;
     overflow: hidden;
     text-align: center;
