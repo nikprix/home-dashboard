@@ -1,13 +1,13 @@
 #!/usr/bin/python
 
-import sys
+### import sys
 import time
 import RPi.GPIO as io
 import subprocess
 
 io.setmode(io.BCM) # Choose BCM for GPIO address else BOARD for PIN address layout
 io.setwarnings(False)
-SHUTOFF_DELAY = 20 # 15*60  # seconds ## every 15 minutes
+SHUTOFF_DELAY = 15*60  # seconds ## every 15 minutes
 PIR_PIN = 4  # 7 on the board
 
 # DEBUG: see user that's running this script
@@ -22,8 +22,8 @@ def main():
     while True:
         if io.input(PIR_PIN):
             last_motion_time = time.time()
-            print("Motion detected!")  ### DEBUG
-            sys.stdout.flush() ### Release buffer to the terminal
+            ### print("Motion detected!")  ### DEBUG
+            ### sys.stdout.flush() ### Release buffer to the terminal
             if turned_off:
                 turned_off = False
                 turn_on()
