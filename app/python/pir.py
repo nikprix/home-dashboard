@@ -12,10 +12,10 @@ DAY_SHUTOFF_DELAY = 15*60  # seconds ## every 15 minutes
 NIGHT_SHUTOFF_DELAY = 60  # seconds ## every 60 seconds
 PIR_PIN = 4  # 7 on the board
 
-
-timeStart = datetime.time(22, 0, 0)
-timeEnd = datetime.time(23, 0, 0)
-timeNow = datetime.datetime.now().time()
+### Time below is used for defining time range withing which we power HDMI off
+timeStart = datetime.time(1, 0, 0)
+timeEnd = datetime.time(6, 0, 0)
+timeSwitchOn =  datetime.time(5, 59, 30)
 
 
 # DEBUG: see user that's running this script
@@ -28,21 +28,32 @@ def main():
     last_motion_time = time.time()
 
     while True:
+
+        # Defining Current time every time when new loop starts
+        timenow = datetime.datetime.now().time().replace(microsecond=0)
+
+        # Switching on monitor right before night time range is running off to avoid problems with switching HDMI on
+        # during daytime.
+        if timeSwitchOn == timenow:
+            turned_off = False
+            turn_on_HDMI()
+
+        # if motion was detected:
         if io.input(PIR_PIN):
             last_motion_time = time.time()
             ### print("Motion detected!")  ### DEBUG
             ### sys.stdout.flush() ### Release buffer to the terminal
-            if not time_in_range(timeStart, timeEnd, timeNow) and turned_off:
+            if not time_in_range(timeStart, timeEnd, timenow) and turned_off:
                 turned_off = False
                 turn_on()
-            if time_in_range(timeStart, timeEnd, timeNow) and turned_off:
+            if time_in_range(timeStart, timeEnd, timenow) and turned_off:
                 turned_off = False
                 turn_on_HDMI()
         else:
-            if not turned_off and time.time() > (last_motion_time + DAY_SHUTOFF_DELAY) and not time_in_range(timeStart, timeEnd, timeNow):
+            if not turned_off and time.time() > (last_motion_time + DAY_SHUTOFF_DELAY) and not time_in_range(timeStart, timeEnd, timenow):
                 turned_off = True
                 turn_off()
-            if not turned_off and time.time() > (last_motion_time + NIGHT_SHUTOFF_DELAY) and time_in_range(timeStart, timeEnd, timeNow):
+            if not turned_off and time.time() > (last_motion_time + NIGHT_SHUTOFF_DELAY) and time_in_range(timeStart, timeEnd, timenow):
                 turned_off = True
                 turn_off_HDMI()
         time.sleep(.1)
