@@ -15,7 +15,7 @@ PIR_PIN = 4  # 7 on the board
 
 timeStart = datetime.time(22, 0, 0)
 timeEnd = datetime.time(23, 0, 0)
-timeNow = datetime.datetime.now().time().strftime('%H:%M:%S')
+timeNow = datetime.datetime.now().time()
 
 
 # DEBUG: see user that's running this script
