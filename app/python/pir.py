@@ -35,7 +35,7 @@ def main():
 
         # Switching on monitor right before night time range is running off to avoid problems with switching HDMI on
         # during daytime.
-        schedule.every().day.at("5:59").do(turn_on_hdmi())
+        #schedule.every().day.at(timeSwitchOn).do(turn_on_hdmi())
 
         # if motion was detected:
         if io.input(PIR_PIN):
