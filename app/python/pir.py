@@ -15,7 +15,7 @@ PIR_PIN = 4  # 7 on the board
 
 ### Time below is used for defining time range withing which we power HDMI off
 timeStart = datetime.time(0, 01, 0)
-timeEnd = datetime.time(5, 59, 15)
+timeEnd = datetime.time(5, 59, 30)
 timeSwitchOn =  "5:59"
 
 
