@@ -235,7 +235,7 @@ TWEETS = {
                     // before exiting from this function - coloring tweets:
                     colorSTMUsers();
 
-                } else alert('Error with Twitter data fetching!');
+                } else console.log('Error with Twitter data fetching!'); //alert('Error with Twitter data fetching!');
 
             }
 
@@ -285,7 +285,7 @@ TWEETS = {
                             });
                         }
 
-                    } else alert('Error with Twitter data fetching!');
+                    } else console.log('Error with Twitter data fetching!') // alert('Error with Twitter data fetching!');
 
                 }
 
@@ -492,7 +492,8 @@ function getCalendar() {
                         block: 'calendar'
                     },
                     error: function () {
-                        alert('there was an error while fetching events!');
+                        console.log('There was an error while fetching events!');
+                        //alert('there was an error while fetching events!');
                     }
                 },
 
