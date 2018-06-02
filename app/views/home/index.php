@@ -17,9 +17,9 @@
     <script type="text/javascript" src="../public/js/lib/jquery.js"></script>
     <script type="text/javascript" src="../public/js/lib/moment-with-locales.js"></script>
     <script type="text/javascript" src="../public/js/lib/moment.js"></script>
+    <script type="text/javascript" src="../public/js/lib/skycons.js"></script>
     <script type="text/javascript" src="../public/js/lib/jquery.gridalicious.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/skycons/1396634940/skycons.js"></script>
     <script type="text/javascript"
             src="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.4.0/fullcalendar.min.js"></script>
 

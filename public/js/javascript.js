@@ -82,31 +82,26 @@ function meteo() {
 
 /** Sets icons for weather **/
 
-function setSkycons(){
-    var skycons = new Skycons({"color": "pink"});
-
-    // start animation!
-    skycons.play();
-
-
-    if(document.getElementById("rain")) {
-        skycons.set("rain", Skycons.RAIN);
-    }
-
-
-
-
-
-
-    skycons.add(document.getElementById("icon2"), Skycons.RAIN);
-
-}
-
+// https://github.com/maxdow/skycons
+// If you want to add more colors :
+// var skycons = new Skycons({"monochrome": false});
+// you can now customize the color of different parts
+// main, moon, fog, fogbank, cloud, snow, leaf, rain, sun
+// var skycons = new Skycons({
+//  "monochrome": false,
+//  "colors" : {
+//    "cloud" : "#F00"
+//  }
+//  });
 
 function setSkycons() {
     var i,
         icons = new Skycons({
-            "color": "white",
+            "monochrome": false,
+              "colors" : {
+                  "cloud" : "#a2bee4",
+                  "moon": "#ccc"
+            },
             "resizeClear": true // nasty android hack
         }),
         list  = [ // listing of all possible icons

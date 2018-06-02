@@ -64,7 +64,7 @@ class Home extends Controller
                     </div>
                     <p class="conditions">' . $weatherConditions . '</p>
 
-                    <p><canvas class="' . $iconId . '" width="64" height="64"></canvas></p>
+                    <p><canvas class="' . $iconId . '" width="45" height="45"></canvas></p>
 
                     <div class="temperature">
                     <span class="maxTemp">' . $maxDegrees . '&deg;</span>
@@ -105,7 +105,7 @@ class Home extends Controller
                     </div>
                     <p class="hourlyConditions">' . $hourlyCondition . '</p>
 
-                    <p><canvas class="' . $hourlyIcon . '" width="64" height="64"></canvas></p>
+                    <p><canvas class="' . $hourlyIcon . '" width="45" height="45"></canvas></p>
 
                     <div class="hourlyTemperature">
                         <span class="currentTemp">' . $hourlyTemp . '</span>
