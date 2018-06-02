@@ -105,7 +105,7 @@ class Home extends Controller
                     </div>
                     <p class="hourlyConditions">' . $hourlyCondition . '</p>
 
-                    <p><canvas class="' . $hourlyIcon . '" width="40" height="40"></canvas></p>
+                    <p><canvas class="' . $hourlyIcon . '" width="35" height="35"></canvas></p>
 
                     <div class="hourlyTemperature">
                         <span class="currentTemp">' . $hourlyTemp . '</span>
