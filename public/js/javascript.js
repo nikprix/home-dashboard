@@ -74,8 +74,70 @@ function meteo() {
             buildLineGraph();
         }
     });
+    // setting icons
+    setSkycons();
     console.log('weather refreshed!');
     // meteo_timeout = setTimeout("meteo()", 3600000);
+}
+
+/** Sets icons for weather **/
+
+function setSkycons(){
+    var skycons = new Skycons({"color": "pink"});
+
+    // start animation!
+    skycons.play();
+
+
+    if(document.getElementById("rain")) {
+        skycons.set("rain", Skycons.RAIN);
+    }
+
+
+
+
+
+
+    skycons.add(document.getElementById("icon2"), Skycons.RAIN);
+
+}
+
+
+function setSkycons() {
+    var i,
+        icons = new Skycons({
+            "color": "white",
+            "resizeClear": true // nasty android hack
+        }),
+        list  = [ // listing of all possible icons
+            "clear-day",
+            "clear-night",
+            "partly-cloudy-day",
+            "partly-cloudy-night",
+            "cloudy",
+            "rain",
+            "sleet",
+            "snow",
+            "wind",
+            "fog"
+        ];
+
+    // loop thru icon list array
+    for(i = list.length; i--;) {
+        var weatherType = list[i], // select each icon from list array
+
+        // icons will have the name in the array above attached to the
+        // canvas element as a class so let's hook into them.
+            elements = document.getElementsByClassName( weatherType );
+
+        // loop thru the elements now and set them up
+        for (e = elements.length; e--;) {
+            icons.set(elements[e], weatherType);
+        }
+    }
+
+    // animate the icons
+    icons.play();
 }
 
 /** builds simple graph using chartjs.org lib **/

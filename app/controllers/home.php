@@ -33,29 +33,26 @@ class Home extends Controller
 
         //////////////////////// Retrieving 8 days forecast ////////////////////////
 
-        $dayArr = $model->get10DaysForecast();
+        $dayArr = $model->getDailyForecast();
 
-        $daysForecast = $dayArr['forecast']['simpleforecast']['forecastday'];
+        $daysForecast = $dayArr['daily']['data'];
 
         // looping through the array of days (getting only first 8 days)
-        for ($i = 0; $i < sizeof($daysForecast) - 2; $i++) {
+        for ($i = 0; $i < sizeof($daysForecast); $i++) {
 
-            $weekDay = $daysForecast[$i]['date']['weekday'];
-            $monthName = $daysForecast[$i]['date']['monthname'];
-            $date = $daysForecast[$i]['date']['day'];
-            $weatherConditions = $daysForecast[$i]['conditions'];
-            $maxDegrees = $daysForecast[$i]['high']['celsius'];
-            $minDegrees = $daysForecast[$i]['low']['celsius'];
-            $iconUrl = $daysForecast[$i]['icon_url'];
+            $weekDay = date('l', $daysForecast[$i]['time']);
+            $monthName = date('F', $daysForecast[$i]['time']);
+            $date = date('j', $daysForecast[$i]['time']);
+            $weatherConditions = $daysForecast[$i]['summary'];
+            $maxDegrees = round($daysForecast[$i]['temperatureHigh'],0,PHP_ROUND_HALF_UP);
+            $minDegrees = round($daysForecast[$i]['temperatureLow'],0,PHP_ROUND_HALF_UP);
+            $iconId = $daysForecast[$i]['icon'];
+
+
             // 'snow' heigth needs implementation depending from the project
             $snowAllDay = '';
             $snowDay = '';
             $snowNight = '';
-
-            // changing icon (currently not replacing)
-            $newIconType = 'k';
-            $replace = 'k';
-            $newIconUrl = str_replace('/' . $replace . '/', '/' . $newIconType . '/', $iconUrl);
 
             // replacing current day string with 'TODAY'. Also, here we are using default timezone
             ($weekDay == date('l') && $date == getdate(date("U"))['mday']) ? $weekDay = 'today' : $weekDay;
@@ -66,7 +63,9 @@ class Home extends Controller
                     <span class="monthDay">' . $monthName . ' ' . $date . '</span>
                     </div>
                     <p class="conditions">' . $weatherConditions . '</p>
-                    <p><img src="' . $newIconUrl . '"></p>
+
+                    <p><canvas class="' . $iconId . '" width="64" height="64"></canvas></p>
+
                     <div class="temperature">
                     <span class="maxTemp">' . $maxDegrees . '&deg;</span>
                     <span class="lowTemp">' . $minDegrees . '&deg;</span>
@@ -85,17 +84,18 @@ class Home extends Controller
 
         $hourlyArr = $model->getHourlyForecast();
 
-        $hoursForecast = $hourlyArr['hourly_forecast'];
+        $hoursForecast = $hourlyArr['hourly']['data'];
 
-        // looping through the array of days (getting only first 8 days)
-        for ($i = 0; $i < sizeof($hoursForecast); $i++) {
+        // looping through the array of hours (getting only first 11 hours)
+        for ($i = 0; $i < 11; $i++) {
 
-            $hour = $hoursForecast[$i]['FCTTIME']['hour'];
-            $minute = $hoursForecast[$i]['FCTTIME']['min'];
-            $hourlyTemp = $hoursForecast[$i]['temp']['metric'];
-            $feelsLikeTemp = $hoursForecast[$i]['feelslike']['metric'];
-            $hourlyIcon = $hoursForecast[$i]['icon_url'];
-            $hourlyCondition = $hoursForecast[$i]['condition'];
+            date('l', $hoursForecast[$i]['time']);
+
+            $hour = date('G', $hoursForecast[$i]['time']);
+            $minute = date('i', $hoursForecast[$i]['time']);
+            $hourlyCondition = $hoursForecast[$i]['summary'];
+            $hourlyTemp = round($hoursForecast[$i]['temperature'],0,PHP_ROUND_HALF_UP);
+            $hourlyIcon = $hoursForecast[$i]['icon'];
 
             $htmlHourlyWeather .=
                 '<div class="hourlyForecast">
@@ -104,15 +104,14 @@ class Home extends Controller
 
                     </div>
                     <p class="hourlyConditions">' . $hourlyCondition . '</p>
-                    <p><img class="hourlyWeatherIcon" src="' . $hourlyIcon . '"></p>
+
+                    <p><canvas class="' . $hourlyIcon . '" width="64" height="64"></canvas></p>
+
                     <div class="hourlyTemperature">
                         <span class="currentTemp">' . $hourlyTemp . '</span>
                         <span class="celsDegree">&deg;</span>
                     </div>
                 </div>';
-
-            // breaking the loop when 10 hours weather is retrieved
-            if ($i == 10) break;
         }
 
         $htmlHourlyWeather =

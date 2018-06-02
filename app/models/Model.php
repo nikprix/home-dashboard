@@ -14,12 +14,12 @@ class Model
 
 ////////////////////////////    Weather    ////////////////////////////
 
-    public function get10DaysForecast()
+    public function getDailyForecast()
     {
         $prop_array = parse_ini_file($_SERVER['DOCUMENT_ROOT'] . '/home-dashboard/app/config.ini.php');
 
-        $json_string = file_get_contents("http://api.wunderground.com/api/" . $prop_array['weather_key']
-            . "/forecast10day/q/Canada/Montreal.json");
+        $json_string = file_get_contents("https://api.darksky.net/forecast/" . $prop_array['weather_key']
+            . "/45.4548,-73.5699?exclude=currently,minutely,hourly,flags&units=ca");
         $parsed_json = json_decode($json_string, true);
 
         return $parsed_json;
@@ -29,8 +29,8 @@ class Model
     {
         $prop_array = parse_ini_file($_SERVER['DOCUMENT_ROOT'] . '/home-dashboard/app/config.ini.php');
 
-        $json_string = file_get_contents("http://api.wunderground.com/api/" . $prop_array['weather_key']
-            . "/hourly/q/Canada/Montreal.json");
+        $json_string = file_get_contents("https://api.darksky.net/forecast/" . $prop_array['weather_key']
+            . "/45.4548,-73.5699?exclude=currently,minutely,daily,flags&units=ca");
         $parsed_json = json_decode($json_string, true);
 
         return $parsed_json;
