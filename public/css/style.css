@@ -1,5 +1,6 @@
 body {
     background-color: rgba(0, 0, 50, 1);
+    /*font-family: Verdana, "Courier New", "Lucida Console";*/
     font-family: Verdana, "Courier New", "Lucida Console";
     font-size: 14px;
     font-weight: normal;
@@ -9,6 +10,7 @@ body {
 }
 
 div, table, tr, td, th, h1, h2, h3, a, span, p, pre, fieldset, input, textarea, form, img, select {
+    /*font-family: Verdana, "Courier New", "Lucida Console";*/
     font-family: Verdana, "Courier New", "Lucida Console";
     font-size: 14px;
     font-weight: normal;
